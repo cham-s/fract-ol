@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 16:47:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/25 19:36:32 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/25 20:35:07 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	draw_line(t_image *img, t_point p1, t_point p2)
 {
 	t_bres	b;
 
-	b.ex = fabs(p2.x - p1.x);
-	b.ey = fabs(p2.y - p1.y);
+	b.ex = abs(p2.x - p1.x);
+	b.ey = abs(p2.y - p1.y);
 	b.dx = b.ex * 2;
 	b.dy = b.ey * 2;
 	b.c_dx = b.ex;

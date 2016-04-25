@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:17 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/25 17:36:36 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/25 20:38:10 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	init_co_img(t_co *c, t_image *im)
 	c->win_ptr = mlx_new_window(c->mlx_ptr, WIDTH, HEIGHT, "fractol");
 	set_background(&c->bg_color, c->img);
 	//call function here
+	mandelbrot(im);
 }
 
 void	coord_destroy(t_coord *co)

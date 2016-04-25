@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/25 20:00:16 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/25 20:37:08 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct			s_co
 	int					div;
 }						t_co;
 
+void					mandelbrot(t_image *img);
 void					init_co_img(t_co *c, t_image *im);
 void					rot(t_coord *coord, int div, int gap, int c_height);
 void					height(t_coord *coord, int n_y);
