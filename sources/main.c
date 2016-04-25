@@ -17,8 +17,8 @@ int	main(int ac, char **av)
 	t_co	c;
 	t_image	im;
 
-	(void)av;
 	(void)ac;
+	(void)av;
 	//check_args(ac, av[1]);
 	c.gap = 10;
 	c.c_height = 10;

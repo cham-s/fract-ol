@@ -50,6 +50,7 @@ void	mandelbrot(t_image *img)
 	black.r = 0;
 	black.g = 0;
 	black.b = 0;
+	black.alpha = 0;
 
 	p.x = 0;
 	p.y = 0;
@@ -76,8 +77,9 @@ void	mandelbrot(t_image *img)
 			z_r = (z_r * z_r) - (z_i * z_i) + c_r;
 			z_i = 2 * (z_i * tmp) + c_i;
 			i++;
-			while (z_r * z_r + z_i < 4 && i < iter_max)
+			while ((z_r * z_r) + z_i < 4 && i < iter_max)
 			{
+				ft_putendl("here");
 				if (i == iter_max)
 					pixel_put_image_color(img, &p, &black);
 				else
@@ -85,6 +87,7 @@ void	mandelbrot(t_image *img)
 					color.r = 0;
 					color.g = 0;
 					color.b = (i * 255) / iter_max;
+					color.alpha = 0;
 					pixel_put_image_color(img, &p, &color);
 				}
 			}

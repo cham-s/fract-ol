@@ -54,26 +54,5 @@ void	init_co_img(t_co *c, t_image *im)
 	c->img = im;
 	c->win_ptr = mlx_new_window(c->mlx_ptr, WIDTH, HEIGHT, "fractol");
 	set_background(&c->bg_color, c->img);
-	//call function here
 	mandelbrot(im);
-}
-
-void	coord_destroy(t_coord *co)
-{
-	int v;
-
-	v = 0;
-	while (v < co->to_pts)
-	{
-		free(co->vert[v]);
-		v++;
-	}
-	free(co->vert);
-}
-
-void	co_destroy(t_co *c)
-{
-	coord_destroy(c->coord);
-	mlx_destroy_image(c->mlx_ptr, c->img_ptr);
-	mlx_destroy_window(c->mlx_ptr, c->win_ptr);
 }

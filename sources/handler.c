@@ -71,7 +71,7 @@ void	redraw(t_co *c, int key)
 	mlx_put_image_to_window(c->mlx_ptr, c->win_ptr, c->img_ptr, 0, 0);
 	c->img->img_color = mlx_get_color_value(c->mlx_ptr, c->line_color);
 	launchfunc(key, c);
-	print_point(c->coord, c->img);
+	//print_point(c->coord, c->img);
 	mlx_put_image_to_window(c->mlx_ptr, c->win_ptr, c->img_ptr, 0, 0);
 	menu(c);
 }
@@ -82,7 +82,7 @@ int		handler(int keycode, void *pa)
 		((t_co *)pa)->gap = 1;
 	if (keycode == KEY_ESC)
 	{
-		co_destroy(((t_co *)pa));
+		//co_destroy(((t_co *)pa));
 		exit(EXIT_SUCCESS);
 	}
 	else if (keycode == KEY_SPACE)
