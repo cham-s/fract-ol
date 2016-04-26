@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/26 19:11:52 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/26 19:31:33 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 
 # define ORIGIN_X (WIDTH / 2)
 # define ORIGIN_Y (HEIGHT / 3)
+
 
 typedef	struct			s_color
 {
@@ -74,6 +75,25 @@ typedef struct			s_co
 	t_image				*img;
 	t_color				bg_color;
 }						t_co;
+
+typedef struct			s_frac
+{
+	int iter_max;
+	t_point p;
+	t_fpoint p1;
+	t_fpoint p2;
+	double zoom;
+	double c_r;
+	double c_i;
+	double z_r;
+	double z_i;
+	double i;
+	int image_x;
+	int image_y;
+	double tmp;
+	t_color black;
+	t_color color;
+}						t_frac;
 
 void					mandelbrot(t_image *img);
 void					init_co_img(t_co *c, t_image *im);
