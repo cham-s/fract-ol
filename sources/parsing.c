@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:30:40 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/26 19:12:28 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/27 16:00:01 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void usage(void)
 	ft_putstr_fd("usage:\t", 2);
 	ft_putendl_fd("./fractol -[mj]", 2);
 	ft_putendl_fd("help: ", 2);
-	ft_putendl_fd("\t-j \tDraw julia.", 2);
-	ft_putendl_fd("\t-m \tDraw mandelbrot.", 2);
+	ft_putendl_fd("\t-j \tDraw julia set.", 2);
+	ft_putendl_fd("\t-m \tDraw mandelbrot set.", 2);
 	exit(EXIT_FAILURE);
 }
 

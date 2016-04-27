@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:26:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/26 19:33:10 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/27 17:40:58 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ void	init_julia(t_frac *f)
 	f->black.g = 0;
 	f->black.b = 0;
 	f->black.alpha = 0;
-
 	f->p.x = 0;
 	f->p.y = 0;
 	f->p1.x = -1;
@@ -114,9 +113,23 @@ void	init_julia(t_frac *f)
 	f->p2.x = 1;
 	f->p2.y = 1.2;
 	f->zoom = 200;
-
 	f->image_x = (f->p2.x - f->p1.x) * f->zoom;
 	f->image_y = (f->p2.y - f->p1.y) * f->zoom;
+	f->iter_max = 150;
+}
+
+void	put_color(t_frac *f, t_image *img)
+{
+	if (f->i == f->iter_max)
+		pixel_put_image_color(img, &f->p, &f->black);
+	else
+	{
+		f->color.r = 0;
+		f->color.g = 0;
+		f->color.b = (f->i * 255) / f->iter_max;
+		f->color.alpha = 0;
+		pixel_put_image_color(img, &f->p, &f->color);
+	}
 }
 
 void	julia(t_image *img)
@@ -141,16 +154,7 @@ void	julia(t_image *img)
 				f.z_i = 2 * (f.z_i * f.tmp) + f.c_i;
 				f.i++;
 			}
-			if (f.i == f.iter_max)
-				pixel_put_image_color(img, &f.p, &f.black);
-			else
-			{
-				f.color.r = 0;
-				f.color.g = 0;
-				f.color.b = (f.i * 255) / f.iter_max;
-				f.color.alpha = 0;
-				pixel_put_image_color(img, &f.p, &f.color);
-			}
+			put_color(&f, img);
 			f.p.y++;
 		}
 		f.p.y = 0;

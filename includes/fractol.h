@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/26 19:31:33 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/27 15:57:58 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ typedef struct			s_frac
 	t_color color;
 }						t_frac;
 
-void					mandelbrot(t_image *img);
 void					init_co_img(t_co *c, t_image *im);
 void					pixel_put_image(t_image *image, t_point *p);
 void					check_args(int ac, char *av, t_co *c);
@@ -105,5 +104,6 @@ void					pixel_put_image_color(t_image *i, t_point *p,
 void					set_background(t_color *color, t_image *img);
 void					menu(t_co *c);
 void					julia(t_image *img);
+void					mandelbrot(t_image *img);
 
 #endif
