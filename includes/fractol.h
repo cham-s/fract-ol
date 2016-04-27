@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/27 15:57:58 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/27 19:36:06 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@
 
 # define ORIGIN_X (WIDTH / 2)
 # define ORIGIN_Y (HEIGHT / 3)
+
+# define MAND	1	
+# define JULIA	2	
 
 
 typedef	struct			s_color
@@ -78,21 +81,22 @@ typedef struct			s_co
 
 typedef struct			s_frac
 {
-	int iter_max;
-	t_point p;
-	t_fpoint p1;
-	t_fpoint p2;
-	double zoom;
-	double c_r;
-	double c_i;
-	double z_r;
-	double z_i;
-	double i;
-	int image_x;
-	int image_y;
-	double tmp;
-	t_color black;
-	t_color color;
+	int			iter_max;
+	t_point		p;
+	t_fpoint	p1;
+	t_fpoint	p2;
+	double		zoom;
+	double		c_r;
+	double		c_i;
+	double		z_r;
+	double		z_i;
+	double		i;
+	int			image_x;
+	int			image_y;
+	double		tmp;
+	t_color		black;
+	t_color		color;
+	int			fract;
 }						t_frac;
 
 void					init_co_img(t_co *c, t_image *im);
@@ -105,5 +109,6 @@ void					set_background(t_color *color, t_image *img);
 void					menu(t_co *c);
 void					julia(t_image *img);
 void					mandelbrot(t_image *img);
+void					draw_set(t_image *img, int frac);
 
 #endif

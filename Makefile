@@ -15,7 +15,6 @@ $(NAME): $(LIB) $(OBJS)
 	$(CC) $(FLAGS) $(INCLUDES) $(OBJS) $(LIB) -o $(NAME) $(LIBGRPH)
 
 $(LIB):
-	mkdir obj
 	make -C libft/
 	make -C minilibx_macos
 

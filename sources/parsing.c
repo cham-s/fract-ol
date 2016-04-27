@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:30:40 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/27 16:00:01 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/27 19:54:09 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	check_args(int ac, char *f, t_co *c)
 	if (!ft_strcmp("-m", f))
 	{
 		init_co_img(c, &im);
-		mandelbrot(&im);
+		draw_set(&im, MAND);
 	}
 	else if (!ft_strcmp("-j", f))
 	{
 		init_co_img(c, &im);
-		julia(&im);
+		draw_set(&im, JULIA);
 	}
 	else 
 		usage();
