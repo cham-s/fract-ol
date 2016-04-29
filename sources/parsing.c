@@ -24,6 +24,7 @@ static void usage(void)
 
 void	choose_set(int frac, t_thread_info *ti)
 {
+	init_co_img(ti->c);
 	if (frac == MAND)
 	{
 		init_mand(&ti->frac);
@@ -34,21 +35,14 @@ void	choose_set(int frac, t_thread_info *ti)
 	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
 }
 
-void	*check_args(void *p)
+void	check_args(int ac, char *av, int *frac)
 {
-	t_thread_info	*ti;
-
-	ti = (t_thread_info *)p;
-	if (ti->ac != 2)
+	if (ac != 2)
 		usage();
-	if (!ft_strcmp("-m", ti->f))
-		choose_set(MAND, ti);
-	else if (!ft_strcmp("-j", ti->f))
-	{
-		choose_set(JULIA, ti);
-	}
+	if (!ft_strcmp("-m", av))
+		*frac = MAND;
+	else if (!ft_strcmp("-j", av))
+		*frac = JULIA;
 	else 
 		usage();
-	//pthread_exit(0);
-	return (NULL);
 }

@@ -105,15 +105,14 @@ typedef struct			s_co
 
 typedef	struct	s_thread_info 
 {
-	int		ac;
-	char	*f;
 	t_co	*c;
 	t_frac	frac;
 }				t_thread_info;
 
-void					init_co_img(t_co *c, t_image *im);
+void					init_co_img(t_co *c);
 void					pixel_put_image(t_image *image, t_point *p);
-void					*check_args(void *p);
+/* void					*check_args(void *p); */
+void					check_args(int ac, char *av, int *frac);
 int						handler(int keycode, void *param);
 void					pixel_put_image_color(t_image *i, t_point *p,
 						t_color *c);
@@ -125,6 +124,6 @@ void					draw_set(t_image *img, t_frac *f);
 void					choose_set(int frac, t_thread_info *ti);
 void					init_mand(t_frac *f);
 void					init_julia(t_frac *f);
-void					redraw(t_co *c, int key, t_thread_info *ti);
+void					redraw(int key, t_thread_info *ti);
 
 #endif

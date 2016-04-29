@@ -29,12 +29,15 @@ void	menu(t_co *c)
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 155, WHITE, "P Num - : Z Out");
 }
 
-void	init_co_img(t_co *c, t_image *im)
+void	init_co_img(t_co *c)
 {
+	t_image	*im;
+
+	c->img = (t_image *)ft_memalloc(sizeof(t_image));
+	im = c->img;
 	c->mlx_ptr = mlx_init();
 	c->img_ptr = mlx_new_image(c->mlx_ptr, WIDTH, HEIGHT);
 	im->data = mlx_get_data_addr(c->img_ptr, &im->bpp, &im->sizeline,
 	&im->endian);
 	c->win_ptr = mlx_new_window(c->mlx_ptr, WIDTH, HEIGHT, "fractol");
-	c->img = im;
 }

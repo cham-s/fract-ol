@@ -79,8 +79,8 @@ void	init_julia(t_frac *f)
 	f->black.g = 0;
 	f->black.b = 0;
 	f->black.alpha = 0;
-	f->p.x = WIDTH / 2;
-	f->p.y = HEIGHT/ 2;
+	f->p.x = WIDTH;
+	f->p.y = HEIGHT;
 	f->p1.x = -3;
 	f->p1.y = -1.2;
 	f->p2.x = 4;
@@ -96,8 +96,8 @@ void	chose_frac(t_frac *f)
 {
 	if (f->fract == MAND)
 	{
-		f->c_r = (f->p.x + WIDTH / 2) / f->zoom + f->p1.x;
-		f->c_i = (f->p.y + HEIGHT/ 2) / f->zoom + f->p1.y;
+		f->c_r = (f->p.x) / f->zoom + f->p1.x;
+		f->c_i = (f->p.y) / f->zoom + f->p1.y;
 		f->z_r = 0;
 		f->z_i = 0;
 		f->i = 0;
