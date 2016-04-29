@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/27 19:36:06 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/29 19:52:24 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 # include <stdlib.h>
 # include <errno.h>
 # include <math.h>
-# include <fcntl.h>
+# include <pthread.h>	 
 # include "mlx.h"
 # include "libft.h"
 # include "keyboard.h"
+
+# define NUM_THREADS 2
 
 # define RED		0xFF0000
 # define GREEN		0x00FF00
@@ -38,6 +40,7 @@
 
 # define MAND	1	
 # define JULIA	2	
+
 
 
 typedef	struct			s_color
@@ -70,15 +73,6 @@ typedef struct			s_image
 	int					bpp;
 }						t_image;
 
-typedef struct			s_co
-{
-	void				*mlx_ptr;
-	void				*win_ptr;
-	void				*img_ptr;
-	t_image				*img;
-	t_color				bg_color;
-}						t_co;
-
 typedef struct			s_frac
 {
 	int			iter_max;
@@ -99,9 +93,27 @@ typedef struct			s_frac
 	int			fract;
 }						t_frac;
 
+typedef struct			s_co
+{
+	void				*mlx_ptr;
+	void				*win_ptr;
+	void				*img_ptr;
+	t_image				*img;
+	t_color				bg_color;
+	t_frac				*f;
+}						t_co;
+
+typedef	struct	s_thread_info 
+{
+	int		ac;
+	char	*f;
+	t_co	*c;
+	t_frac	frac;
+}				t_thread_info;
+
 void					init_co_img(t_co *c, t_image *im);
 void					pixel_put_image(t_image *image, t_point *p);
-void					check_args(int ac, char *av, t_co *c);
+void					*check_args(void *p);
 int						handler(int keycode, void *param);
 void					pixel_put_image_color(t_image *i, t_point *p,
 						t_color *c);
@@ -109,6 +121,10 @@ void					set_background(t_color *color, t_image *img);
 void					menu(t_co *c);
 void					julia(t_image *img);
 void					mandelbrot(t_image *img);
-void					draw_set(t_image *img, int frac);
+void					draw_set(t_image *img, t_frac *f);
+void					choose_set(int frac, t_thread_info *ti);
+void					init_mand(t_frac *f);
+void					init_julia(t_frac *f);
+void					redraw(t_co *c, int key, t_thread_info *ti);
 
 #endif

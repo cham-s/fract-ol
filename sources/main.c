@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:24:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/27 15:55:32 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/29 19:52:27 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,32 @@
 
 int	main(int ac, char **av)
 {
-	t_co	c;
+	t_co			c;
+	t_image 		im;
+	//pthread_t		threads[NUM_THREADS];
+	//int				rc;
+	t_thread_info	ti;
 
-	check_args(ac, av[1], &c);
-	mlx_put_image_to_window(c.mlx_ptr, c.win_ptr, c.img_ptr, 0, 0);
+	init_co_img(&c, &im);
+	ti.ac = ac;
+	ti.f = av[1];
+	ti.c = &c;
+	check_args((void *)&ti);
+	/* rc = pthread_create(&threads[0], NULL, check_args, &ti); */
+	/* if (rc) */
+	/* { */
+	/* 	ft_putendl_fd("error: from pthread_create call in the thread #1", 2); */
+	/* 	exit (-1); */
+	/* } */
+	/* rc = pthread_create(&threads[1], NULL, check_args, &ti); */
+	/* if (rc) */
+	/* { */
+	/* 	ft_putendl_fd("error: from pthread_create call in the thread #1"); */
+	/* 	exit (-1); */
+	/* } */
 	//menu(&c);
-	mlx_hook(c.win_ptr, 2, 3, &handler, (void*)&c);
+	mlx_hook(c.win_ptr, 2, 3, &handler, (void *)&ti);
 	mlx_loop(c.mlx_ptr);
+	//pthread_exit(NULL);
 	return (0);
 }

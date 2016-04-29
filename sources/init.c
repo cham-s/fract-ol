@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:17 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/26 17:17:42 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/29 19:28:56 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	init_co_img(t_co *c, t_image *im)
 	im->data = mlx_get_data_addr(c->img_ptr, &im->bpp, &im->sizeline,
 	&im->endian);
 	c->win_ptr = mlx_new_window(c->mlx_ptr, WIDTH, HEIGHT, "fractol");
+	c->img = im;
 }
