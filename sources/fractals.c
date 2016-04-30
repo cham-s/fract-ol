@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:26:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/29 19:52:25 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/30 19:51:07 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,14 @@ void	init_mand(t_frac *f)
 	f->black.alpha = 0;
 	f->p.x = 0;
 	f->p.y = 0;
-	f->p1.x = -2.3;
+	f->p1.x = -2.4;
 	f->p1.y = -1.25;
 	f->p2.x = 0.6;
 	f->p2.y = 1.2;
-	f->zoom = 300;
+	f->zoom = 400;
 	f->image_x = WIDTH;
 	f->image_y = HEIGHT;
 	f->iter_max = 40;
-	f->fract = MAND;
 }
 
 void	init_julia(t_frac *f)
@@ -79,8 +78,8 @@ void	init_julia(t_frac *f)
 	f->black.g = 0;
 	f->black.b = 0;
 	f->black.alpha = 0;
-	f->p.x = WIDTH;
-	f->p.y = HEIGHT;
+	f->p.x = 0;
+	f->p.y = 0;
 	f->p1.x = -3;
 	f->p1.y = -1.2;
 	f->p2.x = 4;
@@ -89,7 +88,6 @@ void	init_julia(t_frac *f)
 	f->image_x = WIDTH;
 	f->image_y = HEIGHT;
 	f->iter_max = 40;
-	f->fract = JULIA;
 }
 
 void	chose_frac(t_frac *f)
@@ -112,6 +110,20 @@ void	chose_frac(t_frac *f)
 	}
 }
 
+void	choose_z(t_frac *f)
+{
+	if (f->fract == BURN)
+	{
+		f->z_r = fabs((f->z_r * f->z_r) - (f->z_i * f->z_i) + f->c_r);
+		f->z_i = fabs(2 * (f->z_i * f->tmp) + f->c_i);
+	}
+	else
+	{
+		f->z_r = (f->z_r * f->z_r) - (f->z_i * f->z_i) + f->c_r;
+		f->z_i = 2 * (f->z_i * f->tmp) + f->c_i;
+	}
+}
+
 void	draw_set(t_image *img, t_frac *f)
 {
 	while (f->p.x < f->image_x)
@@ -122,8 +134,7 @@ void	draw_set(t_image *img, t_frac *f)
 			while ((f->z_r * f->z_r) + (f->z_i * f->z_i) < 4 && f->i < f->iter_max)
 			{
 				f->tmp = f->z_r;
-				f->z_r = (f->z_r * f->z_r) - (f->z_i * f->z_i) + f->c_r;
-				f->z_i = 2 * (f->z_i * f->tmp) + f->c_i;
+				choose_z(f);
 				f->i++;
 			}
 			put_color(f, img);

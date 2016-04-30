@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/29 19:52:24 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/04/30 18:08:28 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # include "mlx.h"
 # include "libft.h"
 # include "keyboard.h"
-
-# define NUM_THREADS 2
 
 # define RED		0xFF0000
 # define GREEN		0x00FF00
@@ -40,6 +38,7 @@
 
 # define MAND	1	
 # define JULIA	2	
+# define BURN	3
 
 
 
@@ -99,8 +98,6 @@ typedef struct			s_co
 	void				*win_ptr;
 	void				*img_ptr;
 	t_image				*img;
-	t_color				bg_color;
-	t_frac				*f;
 }						t_co;
 
 typedef	struct	s_thread_info 
@@ -111,7 +108,6 @@ typedef	struct	s_thread_info
 
 void					init_co_img(t_co *c);
 void					pixel_put_image(t_image *image, t_point *p);
-/* void					*check_args(void *p); */
 void					check_args(int ac, char *av, int *frac);
 int						handler(int keycode, void *param);
 void					pixel_put_image_color(t_image *i, t_point *p,
