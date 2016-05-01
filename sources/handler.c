@@ -35,7 +35,15 @@
 
 void	launchfunc(int keycode, t_thread_info *ti)
 {
-	if (keycode == MOUSE_RIGHT)
+	t_color blk;
+
+	blk.r = 0;
+	blk.g = 0;
+	blk.b = 0;
+	blk.alpha = 0;
+	set_background(&blk, ti->c->img);
+	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
+	if (keycode == WHEEL_DOWN)
 	{
 		ti->frac.p.x = 0;
 		ti->frac.p.y = 0;
@@ -43,7 +51,7 @@ void	launchfunc(int keycode, t_thread_info *ti)
 		draw_set(ti->c->img, &ti->frac);
 		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
 	}
-	else if (keycode == MOUSE_LEFT)
+	else if (keycode == WHEEL_UP)
 	{
 		ti->frac.p.x = 0;
 		ti->frac.p.y = 0;
@@ -114,7 +122,7 @@ void	redraw(int key, t_thread_info *ti)
 	if (key != KEY_ESC && key != KEY_UP && key != KEY_DOWN && key != KEY_LEFT
 		&& key != KEY_RIGHT && key != KEY_EQUAL && key != KEY_MIN
 		&& key != KEY_NUM_PLUS && key != KEY_NUM_MINUS
-		&& key != MOUSE_LEFT && key != MOUSE_RIGHT && key != KEY_NUM_MINUS)
+		&&  key != WHEEL_UP && key != WHEEL_DOWN)
 		return ;
 	launchfunc(key, ti);
 	/* menu(c); */

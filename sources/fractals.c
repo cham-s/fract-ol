@@ -58,7 +58,7 @@ void	init_mand(t_frac *f)
 	f->black.r = 232;
 	f->black.g = 232;
 	f->black.b = 232;
-	f->black.alpha = 0;
+	f->black.alpha = 255;
 	f->p.x = 0;
 	f->p.y = 0;
 	f->p1.x = -2.4;
@@ -77,7 +77,7 @@ void	init_julia(t_frac *f)
 	f->black.r = 0;
 	f->black.g = 0;
 	f->black.b = 0;
-	f->black.alpha = 0;
+	f->black.alpha = 255;
 	f->p.x = 0;
 	f->p.y = 0;
 	f->p1.x = -3;
