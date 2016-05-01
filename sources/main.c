@@ -23,7 +23,8 @@ int	main(int ac, char **av)
 	choose_set(frac_set, &ti);
 	draw_set(ti.c->img, &ti.frac);
 	mlx_put_image_to_window(ti.c->mlx_ptr, ti.c->win_ptr, ti.c->img_ptr, 0, 0);
-	mlx_hook(ti.c->win_ptr, 2, 3, &handler, (void *)&ti);
+	mlx_hook(ti.c->win_ptr, 2, 3, &handler_key, (void *)&ti);
+	mlx_mouse_hook(ti.c->win_ptr, &handler_mouse, (void *)&ti);
 	mlx_loop(ti.c->mlx_ptr);
 	return (0);
 }

@@ -65,7 +65,7 @@ void	init_mand(t_frac *f)
 	f->p1.y = -1.25;
 	f->p2.x = 0.6;
 	f->p2.y = 1.2;
-	f->zoom = 400;
+	f->zoom = 300;
 	f->image_x = WIDTH;
 	f->image_y = HEIGHT;
 	f->iter_max = 40;
@@ -92,7 +92,7 @@ void	init_julia(t_frac *f)
 
 void	chose_frac(t_frac *f)
 {
-	if (f->fract == MAND)
+	if (f->fract == MAND || f->fract == BURN)
 	{
 		f->c_r = (f->p.x) / f->zoom + f->p1.x;
 		f->c_i = (f->p.y) / f->zoom + f->p1.y;
@@ -104,8 +104,8 @@ void	chose_frac(t_frac *f)
 	{
 		f->z_r = f->p.x / f->zoom + f->p1.x;
 		f->z_i = f->p.y / f->zoom + f->p1.y;
-		f->c_r = -0.70;
-		f->c_i = 0.27015;
+		f->c_r = -0.758333;
+		f->c_i = -0.0655;
 		f->i = 0;
 	}
 }

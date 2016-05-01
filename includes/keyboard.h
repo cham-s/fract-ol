@@ -108,4 +108,11 @@
 # define KEY_NUM_POINT 65
 # define KEY_NUM_MINUS 78
 # define KEY_NUM_PLUS 69
+
+# define WHEEL_UP 4
+# define WHEEL_DOWN 5
+# define MOUSE_LEFT 1
+# define MOUSE_RIGHT 2
+# define MOUSE_SIDE 3
+
 #endif

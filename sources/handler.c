@@ -35,7 +35,7 @@
 
 void	launchfunc(int keycode, t_thread_info *ti)
 {
-	if (keycode == KEY_MIN)
+	if (keycode == MOUSE_RIGHT)
 	{
 		ti->frac.p.x = 0;
 		ti->frac.p.y = 0;
@@ -43,7 +43,7 @@ void	launchfunc(int keycode, t_thread_info *ti)
 		draw_set(ti->c->img, &ti->frac);
 		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
 	}
-	else if (keycode == KEY_EQUAL)
+	else if (keycode == MOUSE_LEFT)
 	{
 		ti->frac.p.x = 0;
 		ti->frac.p.y = 0;
@@ -113,25 +113,37 @@ void	redraw(int key, t_thread_info *ti)
 {
 	if (key != KEY_ESC && key != KEY_UP && key != KEY_DOWN && key != KEY_LEFT
 		&& key != KEY_RIGHT && key != KEY_EQUAL && key != KEY_MIN
-		&& key != KEY_NUM_PLUS && key != KEY_NUM_MINUS)
+		&& key != KEY_NUM_PLUS && key != KEY_NUM_MINUS
+		&& key != MOUSE_LEFT && key != MOUSE_RIGHT && key != KEY_NUM_MINUS)
 		return ;
 	launchfunc(key, ti);
 	/* menu(c); */
 }
 
-int		handler(int keycode, void *pa)
+int		handler_key(int keycode, void *pa)
 {
 	t_thread_info	*ti;
 
 	ti = (t_thread_info *)pa;
 	if (keycode == KEY_ESC)
 	{
-		exit(EXIT_SUCCESS);
 		mlx_destroy_image(ti->c->mlx_ptr, ti->c->img_ptr);
 		mlx_destroy_window(ti->c->mlx_ptr, ti->c->win_ptr);
 		free(ti->c->img);
 		free(ti->c);
+		exit(EXIT_SUCCESS);
 	}
 	redraw(keycode, ti);
+	return (0);
+}
+
+int		handler_mouse(int b,int x, int y, void *p)
+{
+	t_thread_info	*ti;
+
+	ti = (t_thread_info *)p;
+	(void)x;
+	(void)y;
+	redraw(b, ti);
 	return (0);
 }

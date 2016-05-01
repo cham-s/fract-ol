@@ -109,7 +109,8 @@ typedef	struct	s_thread_info
 void					init_co_img(t_co *c);
 void					pixel_put_image(t_image *image, t_point *p);
 void					check_args(int ac, char *av, int *frac);
-int						handler(int keycode, void *param);
+int						handler_key(int keycode, void *param);
+int						handler_mouse(int b,int x, int y, void *p);
 void					pixel_put_image_color(t_image *i, t_point *p,
 						t_color *c);
 void					set_background(t_color *color, t_image *img);
