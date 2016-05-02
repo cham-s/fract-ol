@@ -33,7 +33,37 @@
 /* 		rot(c->coord, 1, c->gap, c->c_height); */
 /* } */
 
-void	launchfunc(int keycode, t_thread_info *ti)
+void	zoomin(t_frac *f, t_point *mp, double factor)
+{
+	double x;
+	double y;
+
+	x = mp->x / f->zoom + f->p1.x;
+	y = mp->y / f->zoom + f->p1.y;
+	f->zoom *= factor;
+	f->p1.x = x - (WIDTH / f->zoom) / 2;
+	f->p1.y = y - (HEIGHT / f->zoom) / 2;
+}
+
+void	zoomout(t_frac *f, t_point *mp, double factor)
+{
+	double x;
+	double y;
+
+	x = mp->x / f->zoom + f->p1.x;
+	y = mp->y / f->zoom + f->p1.y;
+	f->zoom /= factor;
+	f->p1.x = x - (WIDTH / f->zoom) / 2;
+	f->p1.y = y - (HEIGHT / f->zoom) / 2;
+}
+
+void	move_f(t_frac *f, t_point *mp)
+{
+	f->p1.x += (mp->x / f->zoom);
+	f->p1.y += (mp->y/ f->zoom);
+}
+
+void	launchfunc(int keycode, t_thread_info *ti, t_point *mp)
 {
 	t_color blk;
 
@@ -47,7 +77,7 @@ void	launchfunc(int keycode, t_thread_info *ti)
 	{
 		ti->frac.p.x = 0;
 		ti->frac.p.y = 0;
-		ti->frac.zoom -= 10 ;
+		zoomout(&ti->frac, mp, 1.5);
 		draw_set(ti->c->img, &ti->frac);
 		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
 	}
@@ -55,7 +85,7 @@ void	launchfunc(int keycode, t_thread_info *ti)
 	{
 		ti->frac.p.x = 0;
 		ti->frac.p.y = 0;
-		ti->frac.zoom += 10;
+		zoomin(&ti->frac, mp, 1.5);
 		draw_set(ti->c->img, &ti->frac);
 		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
 	}
@@ -99,7 +129,7 @@ void	launchfunc(int keycode, t_thread_info *ti)
 		draw_set(ti->c->img, &ti->frac);
 		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
 	}
-	if (keycode == KEY_UP)
+	else if (keycode == KEY_UP)
 	{
 		ti->frac.p.x = 0;
 		ti->frac.p.y = 0;
@@ -117,21 +147,24 @@ void	launchfunc(int keycode, t_thread_info *ti)
 	}
 }
 
-void	redraw(int key, t_thread_info *ti)
+void	redraw(int key, t_thread_info *ti, t_point *mp)
 {
 	if (key != KEY_ESC && key != KEY_UP && key != KEY_DOWN && key != KEY_LEFT
 		&& key != KEY_RIGHT && key != KEY_EQUAL && key != KEY_MIN
 		&& key != KEY_NUM_PLUS && key != KEY_NUM_MINUS
 		&&  key != WHEEL_UP && key != WHEEL_DOWN)
 		return ;
-	launchfunc(key, ti);
+	launchfunc(key, ti, mp);
 	/* menu(c); */
 }
 
 int		handler_key(int keycode, void *pa)
 {
 	t_thread_info	*ti;
+	t_point			mp;
 
+	mp.x = 0;
+	mp.y = 0;
 	ti = (t_thread_info *)pa;
 	if (keycode == KEY_ESC)
 	{
@@ -141,17 +174,18 @@ int		handler_key(int keycode, void *pa)
 		free(ti->c);
 		exit(EXIT_SUCCESS);
 	}
-	redraw(keycode, ti);
+	redraw(keycode, ti, &mp);
 	return (0);
 }
 
 int		handler_mouse(int b,int x, int y, void *p)
 {
 	t_thread_info	*ti;
+	t_point			mp;
 
 	ti = (t_thread_info *)p;
-	(void)x;
-	(void)y;
-	redraw(b, ti);
+	mp.x = x;
+	mp.y = y;
+	redraw(b, ti, &mp);
 	return (0);
 }

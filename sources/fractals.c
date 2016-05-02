@@ -88,8 +88,8 @@ void	put_color(t_frac *f, t_image *img)
 				/* f->color.b = (char)sin(0.01 * f->i + 1) * 230 + 25; */
 				/* f->color.alpha = 0; */
 				/* pixel_put_image_color(img, &f->p, &f->color); */
-				f->color.r = (char)(sin(0.316 * f->i + 8) * 230 + 25);
-				f->color.g = (char)(log(0.0113 * f->i + 2) * 230 + 25);
+				f->color.r = (char)(sin(0.16 * f->i + 8) * 230 + 25);
+				f->color.g = (char)(log(0.013 * f->i + 2) * 230 + 25);
 				f->color.r = (char)(sin(0.211 * f->i + 1) * 230 + 25);
 				f->color.alpha = 0;
 				pixel_put_image_color(img, &f->p, &f->color);
@@ -107,11 +107,11 @@ void	init_mand(t_frac *f)
 	f->black.alpha = 150;
 	f->p.x = 0;
 	f->p.y = 0;
-	f->p1.x = -2.4;
+	f->p1.x = -1.4;
 	f->p1.y = -1.25;
 	f->p2.x = 0.6;
 	f->p2.y = 1.2;
-	f->zoom = 300;
+	f->zoom = 150;
 	f->image_x = WIDTH;
 	f->image_y = HEIGHT;
 	f->iter_max = 40;

@@ -30,7 +30,7 @@
 # define GREY		0x585957
 # define SPEBLUE	0xD9853B
 
-# define WIDTH 1000 
+# define WIDTH 900 
 # define HEIGHT 700 
 
 # define ORIGIN_X (WIDTH / 2)
@@ -121,6 +121,6 @@ void					draw_set(t_image *img, t_frac *f);
 void					choose_set(int frac, t_thread_info *ti);
 void					init_mand(t_frac *f);
 void					init_julia(t_frac *f);
-void					redraw(int key, t_thread_info *ti);
+void					redraw(int key, t_thread_info *ti, t_point *mp);
 
 #endif
