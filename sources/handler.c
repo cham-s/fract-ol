@@ -183,9 +183,12 @@ int		handler_mouse(int b,int x, int y, void *p)
 	t_thread_info	*ti;
 	t_point			mp;
 
-	ti = (t_thread_info *)p;
-	mp.x = x;
-	mp.y = y;
-	redraw(b, ti, &mp);
+	if (y > 0)
+	{
+		ti = (t_thread_info *)p;
+		mp.x = x;
+		mp.y = y;
+		redraw(b, ti, &mp);
+	}
 	return (0);
 }
