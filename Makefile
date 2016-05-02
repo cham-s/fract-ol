@@ -2,7 +2,7 @@ NAME = fractol
 CC = clang
 LIB = libft/libft.a
 FLAGS = -g -Wall -Werror -Wextra -Ofast 
-LIBGRPH = -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit
+LIBGRPH = -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit -D_REENTRANT -lpthread
 INCLUDES = -I includes -I libft/includes -I minilibx_macos
 OBJS = main.o parsing.o line.o init.o fractals.o handler.o
 .PHONY: all clean fclean re

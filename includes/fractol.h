@@ -40,6 +40,8 @@
 # define JULIA	2	
 # define BURN	3
 
+# define MAX_FRACTALS 4
+
 
 
 typedef	struct			s_color
@@ -103,12 +105,19 @@ typedef struct			s_co
 typedef	struct	s_thread_info 
 {
 	t_co	*c;
-	t_frac	frac;
+	t_frac	frac;		
+	int		frac_set;
 }				t_thread_info;
+
+//remove uselless
+typedef struct		s_fractal_thread
+{
+	pthread_t		fractals[MAX_FRACTALS];
+}					t_fractal_thread;
 
 void					init_co_img(t_co *c);
 void					pixel_put_image(t_image *image, t_point *p);
-void					check_args(int ac, char *av, int *frac);
+void					check_args(int ac, char **av, long tab_set[MAX_FRACTALS]);
 int						handler_key(int keycode, void *param);
 int						handler_mouse(int b,int x, int y, void *p);
 void					pixel_put_image_color(t_image *i, t_point *p,
