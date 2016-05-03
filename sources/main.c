@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:24:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/03 23:06:15 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/03 23:21:09 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,24 @@ int	main(int ac, char **av)
 	int					i;
 	long				tab_set[MAX_FRACTALS];
 
+	i = 0;
+
 	ft_memset(tab_set, 0, MAX_FRACTALS);
 	check_args(ac, av, tab_set);
-	start_fractal((void *)tab_set[0]);
+	while (i < MAX_FRACTALS - 1)
+	{
+		pid = fork();
+		if (pid == -1)
+		{
+			//check for validity
+			perror("Error forking");
+			return (-1);
+		}
+		else
+			start_fractal((void *)tab_set[i]);
+		i++;
+	}
+		/* else if (pid > 0) */
+		/* 	waitpid(-1, NULL, 0); */
 	return (EXIT_SUCCESS);
 }
