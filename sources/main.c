@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:24:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/03 23:21:09 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/04 00:05:57 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	*start_fractal(void *data)
 	draw_set(ti.c->img, &ti.frac);
 	mlx_put_image_to_window(ti.c->mlx_ptr, ti.c->win_ptr, ti.c->img_ptr, 0, 0);
 	mlx_hook(ti.c->win_ptr, 2, 3, &handler_key, (void *)&ti);
+	mlx_hook(ti.c->win_ptr, 6, 1L << 6, &handler_julia, (void *)&ti);
 	mlx_mouse_hook(ti.c->win_ptr, &handler_mouse, (void *)&ti);
 	mlx_loop(ti.c->mlx_ptr);
 
@@ -57,7 +58,7 @@ int	main(int ac, char **av)
 			start_fractal((void *)tab_set[i]);
 		i++;
 	}
-		/* else if (pid > 0) */
-		/* 	waitpid(-1, NULL, 0); */
+	if (pid > 0)
+		waitpid(-1, NULL, 0);
 	return (EXIT_SUCCESS);
 }

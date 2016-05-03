@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/03 20:56:39 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/04 00:46:36 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ void					choose_set(int frac, t_thread_info *ti);
 void					init_mand(t_frac *f);
 void					init_julia(t_frac *f);
 void					redraw(int key, t_thread_info *ti, t_point *mp);
-int						handle_julia(int b, int x, int y, void *p);
+int						handler_julia(int b, int x, void *p);
+void					modify_julia(t_thread_info *ti, t_point *mp);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:26:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/03 22:52:46 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/03 23:50:43 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,12 @@ void	put_color(t_frac *f, t_image *img)
 				/* f->color.alpha = 0; */
 				/* pixel_put_image_color(img, &f->p, &f->color); */
 				// nice red yellow
-				/* f->color.r = (char)(sin(0.16 * f->i + 8) * 230 + 25); */
-				/* f->color.g = (char)(sin(0.13 * f->i + 2) * 230 + 25); */
-				/* f->color.r = (char)(sin(0.01 * f->i + 1) * 230 + 25); */
-				f->color.r = (char)(sin(0.16 * f->i + 4) * 230 + 25);
-				f->color.g = (char)(sin(0.04 * f->i + 2) * 230 + 25);
-				f->color.r = (char)(log(0.013 * f->i + 1) * 230 + 25);
+				f->color.r = (char)(sin(0.16 * f->i + 8) * 230 + 25);
+				f->color.g = (char)(sin(0.13 * f->i + 2) * 230 + 25);
+				f->color.r = (char)(sin(0.01 * f->i + 1) * 230 + 25);
+				/* f->color.r = (char)(sin(0.16 * f->i + 4) * 230 + 25); */
+				/* f->color.g = (char)(sin(0.04 * f->i + 2) * 230 + 25); */
+				/* f->color.r = (char)(log(0.013 * f->i + 1) * 230 + 25); */
 				f->color.alpha = 0;
 				pixel_put_image_color(img, &f->p, &f->color);
 			}
@@ -124,6 +124,8 @@ void	init_mand(t_frac *f)
 void	init_julia(t_frac *f)
 {
 	f->i = 0;
+	f->c_r = 0.3;
+	f->c_i = -0.0259;
 	f->black.r = 0;
 	f->black.g = 0;
 	f->black.b = 0;
@@ -154,8 +156,6 @@ void	chose_frac(t_frac *f)
 	{
 		f->z_r = f->p.x / f->zoom + f->p1.x;
 		f->z_i = f->p.y / f->zoom + f->p1.y;
-		f->c_r = 0.3;
-		f->c_i = -0.0259;
 		f->i = 0;
 	}
 }

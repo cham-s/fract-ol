@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:26 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/03 21:03:57 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/04 01:04:10 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,42 +77,41 @@ void	launchfunc(int keycode, t_thread_info *ti, t_point *mp)
 	ti->frac.p.y = 0;
 	if (keycode == WHEEL_DOWN)
 		zoomout(&ti->frac, mp, 1.5);
-	else if (keycode == WHEEL_UP)
+	if (keycode == WHEEL_UP)
 		zoomin(&ti->frac, mp, 1.5);
 	if (keycode == KEY_MIN)
 		ti->frac.zoom -= 10 ;
-	else if (keycode == KEY_NUM_PLUS)
+	if (keycode == KEY_NUM_PLUS)
 		ti->frac.iter_max += 5;
-	else if (keycode == KEY_NUM_MINUS)
+	if (keycode == KEY_NUM_MINUS)
 		ti->frac.iter_max -= 5;
 	if (keycode == KEY_LEFT)
 		ti->frac.p1.x += 0.1;
-	else if (keycode == KEY_RIGHT)
+	if (keycode == KEY_RIGHT)
 		ti->frac.p1.x -= 0.1;
-	else if (keycode == KEY_UP)
+	if (keycode == KEY_UP)
 		ti->frac.p1.y += 0.1;
-	else if (keycode == KEY_DOWN)
+	if (keycode == KEY_DOWN)
 		ti->frac.p1.y -= 0.1;
-	else if (keycode == KEY_1)
-		ti->frac.c_r += 0.01;
-	else if (keycode == KEY_2)
-		ti->frac.c_i += 0.0001;
-	else if (keycode == KEY_3)
-		ti->frac.c_r -= 0.01;
-	else if (keycode == KEY_4)
-		ti->frac.c_i -= 0.0001;
+	if (ti->frac.fract == JULIA)
+		modify_julia(ti, mp);
 	draw_set(ti->c->img, &ti->frac);
 	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
 }
 
 void	redraw(int key, t_thread_info *ti, t_point *mp)
 {
-	if (key != KEY_ESC && key != KEY_UP && key != KEY_DOWN && key != KEY_LEFT
-		&& key != KEY_RIGHT && key != KEY_EQUAL && key != KEY_MIN
-		&& key != KEY_NUM_PLUS && key != KEY_NUM_MINUS
-		&&  key != WHEEL_UP && key != WHEEL_DOWN &&  key != KEY_1 && key != KEY_2 &&  key != KEY_3 && key != KEY_4)
+	if (key == KEY_ESC || key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT
+		|| key == KEY_RIGHT || key == KEY_EQUAL || key == KEY_MIN
+		|| key == KEY_NUM_PLUS || key == KEY_NUM_MINUS
+		||  key == WHEEL_UP || key == WHEEL_DOWN)
+	{
+		//printf
+		printf("here\n");
+		launchfunc(key, ti, mp);
+	}
+	else
 		return ;
-	launchfunc(key, ti, mp);
 	/* menu(c); */
 }
 
@@ -134,6 +133,35 @@ int		handler_key(int keycode, void *pa)
 	}
 	redraw(keycode, ti, &mp);
 	return (0);
+}
+
+int		handler_julia(int x,int y, void *p)
+{
+	t_thread_info	*ti;
+	t_point			mp;
+
+	if (y > 0 && x > 0 && x < WIDTH && y < HEIGHT)
+	{
+		ti = (t_thread_info *)p;
+		mp.x = x;
+		mp.y = y;
+		printf("x: %d y: %d\n", mp.x, mp.y);
+		launchfunc(999, ti, &mp);
+	}
+
+	return (0);
+}
+
+void	modify_julia(t_thread_info *ti, t_point *mp)
+{
+	if (mp->x < WIDTH / 2)
+		ti->frac.c_i -= 0.0031;
+	if (mp->x > WIDTH / 2)
+		ti->frac.c_r -= 0.01;
+	if (mp->y > HEIGHT / 2)
+		ti->frac.c_i += 0.0001;
+	if (mp->y < HEIGHT / 2)
+		ti->frac.c_r += 0.01;
 }
 
 int		handler_mouse(int b,int x, int y, void *p)
