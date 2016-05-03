@@ -4,6 +4,9 @@
 *.obj
 *.elf
 
+# Name
+fractol
+
 # Precompiled Headers
 *.gch
 *.pch

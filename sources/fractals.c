@@ -32,11 +32,11 @@ void	set_background(t_color *color, t_image *img)
 
 void	put_color(t_frac *f, t_image *img)
 {
-	char v1;
-	char v2;
-	char v3;
-	char v4;
-	int color_rgb;
+	/* char v1; */
+	/* char v2; */
+	/* char v3; */
+	/* char v4; */
+	/* int color_rgb; */
 
 	if (f->p.x < WIDTH && f->p.y < HEIGHT)
 	{
@@ -44,27 +44,27 @@ void	put_color(t_frac *f, t_image *img)
 		{
 			if (f->i == f->iter_max)
 			{
-				/* pixel_put_image_color(img, &f->p, &f->black); */
-				v1 = (int)255 * fabs(f->z_r * f->z_r);
-				v2 = (int)255 * fabs(f->z_i);
-				v3 = (int)(fabs(tan(f->z_r) + fabs(tan(f->z_i))/ 3.14159));
-				v4 = (int)v3 * (255) + v2 * (255) + v2 * 255 + v1;
-				color_rgb = (int)abs((167766 * v4 / (256 * 256)) + v2);
-				f->color.r = (int)(color_rgb / 65536) % 256;
-				f->color.g = (int)(color_rgb / 256);
-				f->color.b = color_rgb % 256;
-				f->color.alpha = 0;
-				pixel_put_image_color(img, &f->p, &f->color);
-				v1 = (char)255 * fabs(f->z_r * f->z_r);
-				v2 = (char)255 * fabs(f->z_i);
-				v3 = (char)(fabs(tan(f->z_r) + fabs(tan(f->z_i))/ 3.14159));
-				v4 = (char)v3 * (255) + v2 * (255) + v2 * 255 + v1;
-				color_rgb = (int)abs((167766 * v4 / (256 * 256)) + v2);
-				f->color.r = (char)log(0.2116 * f->i + 4) * 230 + 25 + v2;
-				f->color.g = (char)sin(0.113 * f->i + 2) * 230 + 25 * color_rgb;
-				f->color.b = (char)log(0.01 * f->i + 1) * 230 + 25;
-				f->color.alpha = 0;
-				pixel_put_image_color(img, &f->p, &f->color);
+				pixel_put_image_color(img, &f->p, &f->black);
+				/* v1 = (int)255 * fabs(f->z_r * f->z_r); */
+				/* v2 = (int)255 * fabs(f->z_i); */
+				/* v3 = (int)(fabs(tan(f->z_r) + fabs(tan(f->z_i))/ 3.14159)); */
+				/* v4 = (int)v3 * (255) + v2 * (255) + v2 * 255 + v1; */
+				/* color_rgb = (int)abs((167766 * v4 / (256 * 256)) + v2); */
+				/* f->color.r = (int)(color_rgb / 65536) % 256; */
+				/* f->color.g = (int)(color_rgb / 256); */
+				/* f->color.b = color_rgb % 256; */
+				/* f->color.alpha = 0; */
+				/* pixel_put_image_color(img, &f->p, &f->color); */
+				/* v1 = (char)255 * fabs(f->z_r * f->z_r); */
+				/* v2 = (char)255 * fabs(f->z_i); */
+				/* v3 = (char)(fabs(tan(f->z_r) + fabs(tan(f->z_i))/ 3.14159)); */
+				/* v4 = (char)v3 * (255) + v2 * (255) + v2 * 255 + v1; */
+				/* color_rgb = (int)abs((167766 * v4 / (256 * 256)) + v2); */
+				/* f->color.r = (char)log(0.2116 * f->i + 4) * 230 + 25 + v2; */
+				/* f->color.g = (char)sin(0.113 * f->i + 2) * 230 + 25 * color_rgb; */
+				/* f->color.b = (char)log(0.01 * f->i + 1) * 230 + 25; */
+				/* f->color.alpha = 0; */
+				/* pixel_put_image_color(img, &f->p, &f->color); */
 			}
 			else
 			{
@@ -88,9 +88,13 @@ void	put_color(t_frac *f, t_image *img)
 				/* f->color.b = (char)sin(0.01 * f->i + 1) * 230 + 25; */
 				/* f->color.alpha = 0; */
 				/* pixel_put_image_color(img, &f->p, &f->color); */
-				f->color.r = (char)(sin(0.16 * f->i + 8) * 230 + 25);
-				f->color.g = (char)(log(0.013 * f->i + 2) * 230 + 25);
-				f->color.r = (char)(sin(0.211 * f->i + 1) * 230 + 25);
+				// nice red yellow
+				/* f->color.r = (char)(sin(0.16 * f->i + 8) * 230 + 25); */
+				/* f->color.g = (char)(sin(0.13 * f->i + 2) * 230 + 25); */
+				/* f->color.r = (char)(sin(0.01 * f->i + 1) * 230 + 25); */
+				f->color.r = (char)(sin(0.16 * f->i + 4) * 230 + 25);
+				f->color.g = (char)(sin(0.04 * f->i + 2) * 230 + 25);
+				f->color.r = (char)(log(0.013 * f->i + 1) * 230 + 25);
 				f->color.alpha = 0;
 				pixel_put_image_color(img, &f->p, &f->color);
 			}
@@ -101,17 +105,17 @@ void	put_color(t_frac *f, t_image *img)
 void	init_mand(t_frac *f)
 {
 	f->i = 0;
-	f->black.r = 127;
-	f->black.g = 106;
-	f->black.b = 32;
-	f->black.alpha = 150;
+	f->black.r = 255;
+	f->black.g = 255;
+	f->black.b = 255;
+	f->black.alpha = 255;
 	f->p.x = 0;
 	f->p.y = 0;
-	f->p1.x = -1.4;
-	f->p1.y = -1.25;
-	f->p2.x = 0.6;
-	f->p2.y = 1.2;
-	f->zoom = 150;
+	f->p1.x = -2.5;
+	f->p1.y = -1;
+	f->p2.x = 1.0;
+	f->p2.y = 1.0;
+	f->zoom = 200;
 	f->image_x = WIDTH;
 	f->image_y = HEIGHT;
 	f->iter_max = 40;
