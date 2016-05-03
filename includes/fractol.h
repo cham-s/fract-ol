@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/30 18:08:28 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/03 20:56:39 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@
 # define BURN	3
 
 # define MAX_FRACTALS 4
-
-
 
 typedef	struct			s_color
 {
@@ -85,6 +83,8 @@ typedef struct			s_frac
 	double		c_i;
 	double		z_r;
 	double		z_i;
+	double		m_r;
+	double		m_i;
 	double		i;
 	int			image_x;
 	int			image_y;
@@ -131,5 +131,6 @@ void					choose_set(int frac, t_thread_info *ti);
 void					init_mand(t_frac *f);
 void					init_julia(t_frac *f);
 void					redraw(int key, t_thread_info *ti, t_point *mp);
+int						handle_julia(int b, int x, int y, void *p);
 
 #endif

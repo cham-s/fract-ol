@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:26 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/30 17:43:19 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/03 21:03:57 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	zoomin(t_frac *f, t_point *mp, double factor)
 	x = mp->x / f->zoom + f->p1.x;
 	y = mp->y / f->zoom + f->p1.y;
 	f->zoom *= factor;
-	f->p1.x = x - (WIDTH / f->zoom) / 2;
-	f->p1.y = y - (HEIGHT / f->zoom) / 2;
+	f->p1.x = x - mp->x / f->zoom;
+	f->p1.y = y - mp->y / f->zoom;
 }
 
 void	zoomout(t_frac *f, t_point *mp, double factor)
@@ -53,8 +53,8 @@ void	zoomout(t_frac *f, t_point *mp, double factor)
 	x = mp->x / f->zoom + f->p1.x;
 	y = mp->y / f->zoom + f->p1.y;
 	f->zoom /= factor;
-	f->p1.x = x - (WIDTH / f->zoom) / 2;
-	f->p1.y = y - (HEIGHT / f->zoom) / 2;
+	f->p1.x = x - mp->x / f->zoom;
+	f->p1.y = y - mp->y / f->zoom;
 }
 
 void	move_f(t_frac *f, t_point *mp)
@@ -73,78 +73,36 @@ void	launchfunc(int keycode, t_thread_info *ti, t_point *mp)
 	blk.alpha = 0;
 	set_background(&blk, ti->c->img);
 	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
+	ti->frac.p.x = 0;
+	ti->frac.p.y = 0;
 	if (keycode == WHEEL_DOWN)
-	{
-		ti->frac.p.x = 0;
-		ti->frac.p.y = 0;
 		zoomout(&ti->frac, mp, 1.5);
-		draw_set(ti->c->img, &ti->frac);
-		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
-	}
 	else if (keycode == WHEEL_UP)
-	{
-		ti->frac.p.x = 0;
-		ti->frac.p.y = 0;
 		zoomin(&ti->frac, mp, 1.5);
-		draw_set(ti->c->img, &ti->frac);
-		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
-	}
 	if (keycode == KEY_MIN)
-	{
-		ti->frac.p.x = 0;
-		ti->frac.p.y = 0;
 		ti->frac.zoom -= 10 ;
-		draw_set(ti->c->img, &ti->frac);
-		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
-	}
 	else if (keycode == KEY_NUM_PLUS)
-	{
-		ti->frac.p.x = 0;
-		ti->frac.p.y = 0;
 		ti->frac.iter_max += 5;
-		draw_set(ti->c->img, &ti->frac);
-		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
-	}
 	else if (keycode == KEY_NUM_MINUS)
-	{
-		ti->frac.p.x = 0;
-		ti->frac.p.y = 0;
 		ti->frac.iter_max -= 5;
-		draw_set(ti->c->img, &ti->frac);
-		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
-	}
 	if (keycode == KEY_LEFT)
-	{
-		ti->frac.p.x = 0;
-		ti->frac.p.y = 0;
 		ti->frac.p1.x += 0.1;
-		draw_set(ti->c->img, &ti->frac);
-		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
-	}
 	else if (keycode == KEY_RIGHT)
-	{
-		ti->frac.p.x = 0;
-		ti->frac.p.y = 0;
 		ti->frac.p1.x -= 0.1;
-		draw_set(ti->c->img, &ti->frac);
-		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
-	}
 	else if (keycode == KEY_UP)
-	{
-		ti->frac.p.x = 0;
-		ti->frac.p.y = 0;
 		ti->frac.p1.y += 0.1;
-		draw_set(ti->c->img, &ti->frac);
-		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
-	}
 	else if (keycode == KEY_DOWN)
-	{
-		ti->frac.p.x = 0;
-		ti->frac.p.y = 0;
 		ti->frac.p1.y -= 0.1;
-		draw_set(ti->c->img, &ti->frac);
-		mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
-	}
+	else if (keycode == KEY_1)
+		ti->frac.c_r += 0.01;
+	else if (keycode == KEY_2)
+		ti->frac.c_i += 0.0001;
+	else if (keycode == KEY_3)
+		ti->frac.c_r -= 0.01;
+	else if (keycode == KEY_4)
+		ti->frac.c_i -= 0.0001;
+	draw_set(ti->c->img, &ti->frac);
+	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
 }
 
 void	redraw(int key, t_thread_info *ti, t_point *mp)
@@ -152,7 +110,7 @@ void	redraw(int key, t_thread_info *ti, t_point *mp)
 	if (key != KEY_ESC && key != KEY_UP && key != KEY_DOWN && key != KEY_LEFT
 		&& key != KEY_RIGHT && key != KEY_EQUAL && key != KEY_MIN
 		&& key != KEY_NUM_PLUS && key != KEY_NUM_MINUS
-		&&  key != WHEEL_UP && key != WHEEL_DOWN)
+		&&  key != WHEEL_UP && key != WHEEL_DOWN &&  key != KEY_1 && key != KEY_2 &&  key != KEY_3 && key != KEY_4)
 		return ;
 	launchfunc(key, ti, mp);
 	/* menu(c); */
@@ -183,6 +141,7 @@ int		handler_mouse(int b,int x, int y, void *p)
 	t_thread_info	*ti;
 	t_point			mp;
 
+	//printf
 	if (y > 0)
 	{
 		ti = (t_thread_info *)p;

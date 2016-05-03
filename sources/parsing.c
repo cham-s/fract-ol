@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:30:40 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/30 18:20:34 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/03 22:58:54 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,11 @@ void	choose_set(int frac, t_thread_info *ti)
 {
 	ti->frac.fract = frac;
 	if (frac == MAND)
-	{
 		init_mand(&ti->frac);
-	}
 	else if (frac == JULIA)
-	{
 		init_julia(&ti->frac);
-	}
 	else if (frac == BURN)
-	{
 		init_mand(&ti->frac);
-	}
 }
 /* void	check_args(int ac, char *av, int *frac) */
 /* { */
