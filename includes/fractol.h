@@ -41,6 +41,8 @@
 # define BURN	3
 
 # define MAX_FRACTALS 4
+# define NUM_THREADS 4
+# define QUATER_WIDTH
 
 typedef	struct			s_color
 {
@@ -86,8 +88,6 @@ typedef struct			s_frac
 	double		m_r;
 	double		m_i;
 	double		i;
-	int			image_x;
-	int			image_y;
 	double		tmp;
 	t_color		black;
 	t_color		color;
@@ -110,10 +110,13 @@ typedef	struct	s_thread_info
 }				t_thread_info;
 
 //remove uselless
-typedef struct		s_fractal_thread
+typedef struct		s_data_thread
 {
-	pthread_t		fractals[MAX_FRACTALS];
-}					t_fractal_thread;
+	t_image			*img;
+	t_frac			*f;
+}					t_data_thread;
+
+typedef void *(*fn_draw_worker)(void *p);
 
 void					init_co_img(t_co *c);
 void					pixel_put_image(t_image *image, t_point *p);
