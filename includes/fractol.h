@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/04 00:46:36 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/04 17:11:53 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,9 @@ typedef	struct	s_thread_info
 //remove uselless
 typedef struct		s_data_thread
 {
-	t_image			*img;
-	t_frac			*f;
+	t_image				*img;
+	t_frac				*f;
+	pthread_mutex_t		frac_mutex;
 }					t_data_thread;
 
 typedef void *(*fn_draw_worker)(void *p);

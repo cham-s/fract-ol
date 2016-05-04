@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:26:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/03 23:50:43 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/04 17:26:21 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,7 @@ void	*draw_worker_one(void *p)
 	t_data_thread	*dt;
 
 	dt = (t_data_thread *)p;
+	pthread_mutex_lock(&dt->frac_mutex);
 	dt->f->p.x = 0;
 	dt->f->p.y = 0;
 	while (dt->f->p.x < 225)
@@ -194,6 +195,7 @@ void	*draw_worker_one(void *p)
 		dt->f->p.y = 0;
 		dt->f->p.x++;
 	}
+	pthread_mutex_unlock(&dt->frac_mutex);
 	return (NULL);
 }
 
@@ -202,6 +204,7 @@ void	*draw_worker_two(void *p)
 	t_data_thread	*dt;
 
 	dt = (t_data_thread *)p;
+	pthread_mutex_lock(&dt->frac_mutex);
 	dt->f->p.x = 225;
 	dt->f->p.y = 0;
 	while (dt->f->p.x < 450)
@@ -221,6 +224,7 @@ void	*draw_worker_two(void *p)
 		dt->f->p.y = 0;
 		dt->f->p.x++;
 	}
+	pthread_mutex_unlock(&dt->frac_mutex);
 	return (NULL);
 }
 
@@ -229,6 +233,7 @@ void	*draw_worker_three(void *p)
 	t_data_thread	*dt;
 
 	dt = (t_data_thread *)p;
+	pthread_mutex_lock(&dt->frac_mutex);
 	dt->f->p.x = 450;
 	dt->f->p.y = 0;
 	while (dt->f->p.x < 675)
@@ -248,6 +253,7 @@ void	*draw_worker_three(void *p)
 		dt->f->p.y = 0;
 		dt->f->p.x++;
 	}
+	pthread_mutex_unlock(&dt->frac_mutex);
 	return (NULL);
 }
 
@@ -256,6 +262,7 @@ void	*draw_worker_four(void *p)
 	t_data_thread	*dt;
 
 	dt = (t_data_thread *)p;
+	pthread_mutex_lock(&dt->frac_mutex);
 	dt->f->p.x = 675;
 	dt->f->p.y = 0;
 	while (dt->f->p.x < 900)
@@ -275,6 +282,7 @@ void	*draw_worker_four(void *p)
 		dt->f->p.y = 0;
 		dt->f->p.x++;
 	}
+	pthread_mutex_unlock(&dt->frac_mutex);
 	return (NULL);
 }
 
@@ -319,6 +327,7 @@ void	draw_set(t_image *img, t_frac *f)
 	i = 0;
 	dt.img = img;
 	dt.f = f;
+ 	pthread_mutex_init(&dt.frac_mutex, NULL);
 
 	while (i < NUM_THREADS)
 	{
@@ -332,3 +341,23 @@ void	draw_set(t_image *img, t_frac *f)
 		i++;
 	}
 }
+
+/* void	draw_set(t_image *img, t_frac *f) */
+/* { */
+/* 	t_data_thread		dt; */
+/* 	pthread_t			thread_dr; */
+/* 	pthread_t			thread_dt; */
+/* 	fn_draw_worker		workers[2]; */
+/*  */
+/* 	workers[0] = draw_worker_one; */
+/* 	workers[1] = draw_worker_two; */
+/*  */
+/* 	dt.img = img; */
+/* 	dt.f = f; */
+/* 	pthread_mutex_init(&dt.frac_mutex, NULL); */
+/*  */
+/* 	launch_thread(&thread_dr, workers[0], &dt); */
+/* 	launch_thread(&thread_dt, workers[1], &dt); */
+/* 	wait_thread(thread_dr); */
+/* 	wait_thread(thread_dt); */
+/* } */

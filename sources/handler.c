@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:26 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/04 01:04:10 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/04 16:09:44 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,7 @@ void	redraw(int key, t_thread_info *ti, t_point *mp)
 		|| key == KEY_RIGHT || key == KEY_EQUAL || key == KEY_MIN
 		|| key == KEY_NUM_PLUS || key == KEY_NUM_MINUS
 		||  key == WHEEL_UP || key == WHEEL_DOWN)
-	{
-		//printf
-		printf("here\n");
 		launchfunc(key, ti, mp);
-	}
 	else
 		return ;
 	/* menu(c); */
