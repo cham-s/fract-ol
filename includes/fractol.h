@@ -117,7 +117,8 @@ typedef struct		s_fractal_thread
 
 void					init_co_img(t_co *c);
 void					pixel_put_image(t_image *image, t_point *p);
-void					check_args(int ac, char **av, long tab_set[MAX_FRACTALS]);
+void					check_args(int ac, char **av, long tab_set[MAX_FRACTALS],
+						int *nf);
 int						handler_key(int keycode, void *param);
 int						handler_mouse(int b,int x, int y, void *p);
 void					pixel_put_image_color(t_image *i, t_point *p,

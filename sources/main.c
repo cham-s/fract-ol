@@ -34,18 +34,15 @@ static void	*start_fractal(void *data)
 
 int	main(int ac, char **av)
 {
-	/* t_fractal_thread	ft; */
-	/* pthread_t			fractals[MAX_FRACTALS]; */
-	/* int					ret; */
 	pid_t				pid;
 	int					i;
 	long				tab_set[MAX_FRACTALS];
+	int					nbr_fractal;
 
 	i = 0;
-
 	ft_memset(tab_set, 0, MAX_FRACTALS);
-	check_args(ac, av, tab_set);
-	while (i < MAX_FRACTALS - 1)
+	check_args(ac, av, tab_set, &nbr_fractal);
+	while (i < nbr_fractal)
 	{
 		pid = fork();
 		if (pid == -1)
@@ -54,11 +51,11 @@ int	main(int ac, char **av)
 			perror("Error forking");
 			return (-1);
 		}
-		else
+		if (pid == 0)
 			start_fractal((void *)tab_set[i]);
 		i++;
-	}
+	} 
 	if (pid > 0)
-		waitpid(-1, NULL, 0);
+			waitpid(-1, NULL, 0);
 	return (EXIT_SUCCESS);
 }

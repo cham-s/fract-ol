@@ -46,11 +46,12 @@ static int	fract_set(char *option)
 		return (0);
 }
 
-void	check_args(int ac, char **av, long tab_set[MAX_FRACTALS])
+void	check_args(int ac, char **av, long tab_set[MAX_FRACTALS], int *nf)
 {
 	int	i;
 	int f;
 
+	*nf = 0;
 	i = 1;
 	f = 0;
 	if (ac > 5 || ac < 2)
@@ -61,6 +62,7 @@ void	check_args(int ac, char **av, long tab_set[MAX_FRACTALS])
 		|| !ft_strcmp("-b", av[i]))
 		{
 			tab_set[f++] = fract_set(av[i]);
+			*nf += 1;
 			i++;
 			continue ;
 		}

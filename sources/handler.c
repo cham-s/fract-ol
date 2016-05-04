@@ -145,7 +145,6 @@ int		handler_julia(int x,int y, void *p)
 		ti = (t_thread_info *)p;
 		mp.x = x;
 		mp.y = y;
-		printf("x: %d y: %d\n", mp.x, mp.y);
 		launchfunc(999, ti, &mp);
 	}
 
@@ -154,14 +153,14 @@ int		handler_julia(int x,int y, void *p)
 
 void	modify_julia(t_thread_info *ti, t_point *mp)
 {
-	if (mp->x < WIDTH / 2)
+	if (mp->x < WIDTH / 2 && mp->y < HEIGHT / 2)
 		ti->frac.c_i -= 0.0031;
-	if (mp->x > WIDTH / 2)
-		ti->frac.c_r -= 0.01;
-	if (mp->y > HEIGHT / 2)
+	if (mp->x > WIDTH / 2 && mp->y < HEIGHT / 2)
 		ti->frac.c_i += 0.0001;
-	if (mp->y < HEIGHT / 2)
+	if (mp->x < WIDTH / 2 && mp->y > HEIGHT / 2)
 		ti->frac.c_r += 0.01;
+	if (mp->x > WIDTH / 2 && mp->y > HEIGHT / 2)
+		ti->frac.c_r -= 0.01;
 }
 
 int		handler_mouse(int b,int x, int y, void *p)
