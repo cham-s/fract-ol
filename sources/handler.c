@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:26 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/04 16:09:44 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/05 00:30:08 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	zoomout(t_frac *f, t_point *mp, double factor)
 	f->p1.y = y - mp->y / f->zoom;
 }
 
-void	move_f(t_frac *f, t_point *mp)
+void	move_f(t_frac *f, int x, int y)
 {
-	f->p1.x += (mp->x / f->zoom);
-	f->p1.y += (mp->y/ f->zoom);
+	f->p1.x += (x / f->zoom);
+	f->p1.y += (y/ f->zoom);
 }
 
 void	launchfunc(int keycode, t_thread_info *ti, t_point *mp)
@@ -79,20 +79,38 @@ void	launchfunc(int keycode, t_thread_info *ti, t_point *mp)
 		zoomout(&ti->frac, mp, 1.5);
 	if (keycode == WHEEL_UP)
 		zoomin(&ti->frac, mp, 1.5);
-	if (keycode == KEY_MIN)
-		ti->frac.zoom -= 10 ;
 	if (keycode == KEY_NUM_PLUS)
 		ti->frac.iter_max += 5;
 	if (keycode == KEY_NUM_MINUS)
 		ti->frac.iter_max -= 5;
 	if (keycode == KEY_LEFT)
-		ti->frac.p1.x += 0.1;
+		move_f(&ti->frac, -10, 0);
 	if (keycode == KEY_RIGHT)
-		ti->frac.p1.x -= 0.1;
+		move_f(&ti->frac, 10, 0);
 	if (keycode == KEY_UP)
-		ti->frac.p1.y += 0.1;
+		move_f(&ti->frac, 0, -10);
 	if (keycode == KEY_DOWN)
-		ti->frac.p1.y -= 0.1;
+		move_f(&ti->frac, 0, 10);
+	if (keycode == KEY_R)
+	{
+		ti->frac.color.r++;
+	}
+	if (keycode == KEY_G)
+	{
+		ti->frac.color.g++;
+	}
+	if (keycode == KEY_B)
+	{
+		ti->frac.color.b++;
+	}
+	if (keycode == KEY_A)
+	{
+		ti->frac.color.alpha++;
+	}
+	if (keycode == KEY_Q)
+	{
+		ti->frac.color.alpha--;
+	}
 	if (ti->frac.fract == JULIA)
 		modify_julia(ti, mp);
 	draw_set(ti->c->img, &ti->frac);
@@ -104,7 +122,8 @@ void	redraw(int key, t_thread_info *ti, t_point *mp)
 	if (key == KEY_ESC || key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT
 		|| key == KEY_RIGHT || key == KEY_EQUAL || key == KEY_MIN
 		|| key == KEY_NUM_PLUS || key == KEY_NUM_MINUS
-		||  key == WHEEL_UP || key == WHEEL_DOWN)
+		|| key == WHEEL_UP || key == WHEEL_DOWN || key == KEY_R 
+		|| key == KEY_G || key == KEY_B || key == KEY_A || key == KEY_Q)
 		launchfunc(key, ti, mp);
 	else
 		return ;

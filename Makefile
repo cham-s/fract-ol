@@ -18,6 +18,8 @@ $(LIB):
 	make -C libft/
 	make -C minilibx_macos
 
+%.c : %.h
+
 %.o : %.c 
 	$(CC) -c $(FLAGS) $(INCLUDES) $< -o $@ 
 

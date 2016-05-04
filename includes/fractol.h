@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/04 17:11:53 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/05 00:28:41 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct			s_frac
 	double		tmp;
 	t_color		black;
 	t_color		color;
+	char 		co;
 	int			fract;
 }						t_frac;
 
@@ -104,12 +105,11 @@ typedef struct			s_co
 
 typedef	struct	s_thread_info 
 {
-	t_co	*c;
-	t_frac	frac;		
-	int		frac_set;
+	t_co				*c;
+	t_frac				frac;		
+	int					frac_set;
 }				t_thread_info;
 
-//remove uselless
 typedef struct		s_data_thread
 {
 	t_image				*img;
