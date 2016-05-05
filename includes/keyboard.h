@@ -134,6 +134,7 @@
 # define KEY_NUM_0 82
 # define KEY_NUM_1 83
 # define KEY_NUM_2 84
+# define KEY_NUM_3 85
 # define KEY_NUM_4 86
 # define KEY_NUM_5 87
 # define KEY_NUM_6 88

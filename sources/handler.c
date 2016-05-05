@@ -63,7 +63,7 @@ void	move_f(t_frac *f, int x, int y)
 	f->p1.y += (y/ f->zoom);
 }
 
-void	launchfunc(int keycode, t_thread_info *ti, t_point *mp)
+void	launchfunc(int keycode, t_thread_info *ti, t_point *mp, int e)
 {
 	t_color blk;
 
@@ -79,6 +79,8 @@ void	launchfunc(int keycode, t_thread_info *ti, t_point *mp)
 		zoomout(&ti->frac, mp, 1.5);
 	if (keycode == WHEEL_UP)
 		zoomin(&ti->frac, mp, 1.5);
+	if (ti->frac.fract == JULIA)
+		modify_julia(ti, mp);
 	if (keycode == KEY_NUM_PLUS)
 		ti->frac.iter_max += 5;
 	if (keycode == KEY_NUM_MINUS)
@@ -89,42 +91,27 @@ void	launchfunc(int keycode, t_thread_info *ti, t_point *mp)
 		move_f(&ti->frac, 10, 0);
 	if (keycode == KEY_UP)
 		move_f(&ti->frac, 0, -10);
-	if (keycode == KEY_DOWN)
+	if (keycode == KEY_DOWN && e == MOUSE)
 		move_f(&ti->frac, 0, 10);
-	if (keycode == KEY_R)
-	{
-		ti->frac.color.r++;
-	}
-	if (keycode == KEY_G)
-	{
-		ti->frac.color.g++;
-	}
+	if (keycode == KEY_NUM_1)
+		ti->frac.co.r++;
+	if (keycode == KEY_NUM_2)
+		ti->frac.co.g++;
 	if (keycode == KEY_B)
-	{
-		ti->frac.color.b++;
-	}
-	if (keycode == KEY_A)
-	{
-		ti->frac.color.alpha++;
-	}
-	if (keycode == KEY_Q)
-	{
-		ti->frac.color.alpha--;
-	}
-	if (ti->frac.fract == JULIA)
-		modify_julia(ti, mp);
+	if (keycode == KEY_NUM_3)
+		ti->frac.co.b++;
 	draw_set(ti->c->img, &ti->frac);
 	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
 }
 
-void	redraw(int key, t_thread_info *ti, t_point *mp)
+void	redraw(int key, t_thread_info *ti, t_point *mp, int e)
 {
 	if (key == KEY_ESC || key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT
 		|| key == KEY_RIGHT || key == KEY_EQUAL || key == KEY_MIN
 		|| key == KEY_NUM_PLUS || key == KEY_NUM_MINUS
-		|| key == WHEEL_UP || key == WHEEL_DOWN || key == KEY_R 
-		|| key == KEY_G || key == KEY_B || key == KEY_A || key == KEY_Q)
-		launchfunc(key, ti, mp);
+		|| key == WHEEL_UP || key == WHEEL_DOWN || key == KEY_NUM_1 
+		|| key == KEY_NUM_2 || key == KEY_NUM_3)
+		launchfunc(key, ti, mp, e);
 	else
 		return ;
 	/* menu(c); */
@@ -146,23 +133,23 @@ int		handler_key(int keycode, void *pa)
 		free(ti->c);
 		exit(EXIT_SUCCESS);
 	}
-	redraw(keycode, ti, &mp);
+	redraw(keycode, ti, &mp, KEY);
 	return (0);
 }
 
-int		handler_julia(int x,int y, void *p)
+int		handler_mouse(int b,int x, int y, void *p)
 {
 	t_thread_info	*ti;
 	t_point			mp;
 
-	if (y > 0 && x > 0 && x < WIDTH && y < HEIGHT)
+	//printf
+	if (y > 0)
 	{
 		ti = (t_thread_info *)p;
 		mp.x = x;
 		mp.y = y;
-		launchfunc(999, ti, &mp);
+		redraw(b, ti, &mp, MOUSE);
 	}
-
 	return (0);
 }
 
@@ -178,18 +165,18 @@ void	modify_julia(t_thread_info *ti, t_point *mp)
 		ti->frac.c_r -= 0.01;
 }
 
-int		handler_mouse(int b,int x, int y, void *p)
+int		handler_julia(int x,int y, void *p)
 {
 	t_thread_info	*ti;
 	t_point			mp;
 
-	//printf
-	if (y > 0)
+	if (y > 0 && x > 0 && x < WIDTH && y < HEIGHT)
 	{
 		ti = (t_thread_info *)p;
 		mp.x = x;
 		mp.y = y;
-		redraw(b, ti, &mp);
+		launchfunc(999, ti, &mp, 999);
 	}
+
 	return (0);
 }

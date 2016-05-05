@@ -40,4 +40,6 @@ void	init_co_img(t_co *c)
 	im->data = mlx_get_data_addr(c->img_ptr, &im->bpp, &im->sizeline,
 	&im->endian);
 	c->win_ptr = mlx_new_window(c->mlx_ptr, WIDTH, HEIGHT, "fractol");
+	c->opts.is_lock = 0;
+	c->opts.is_mouse = 0;
 }

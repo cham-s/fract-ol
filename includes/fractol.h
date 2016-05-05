@@ -36,13 +36,15 @@
 # define ORIGIN_X (WIDTH / 2)
 # define ORIGIN_Y (HEIGHT / 3)
 
+# define KEY	1
+# define MOUSE	2
+
 # define MAND	1	
 # define JULIA	2	
 # define BURN	3
 
 # define MAX_FRACTALS 4
 # define NUM_THREADS 4
-# define QUATER_WIDTH
 
 typedef	struct			s_color
 {
@@ -91,9 +93,15 @@ typedef struct			s_frac
 	double		tmp;
 	t_color		black;
 	t_color		color;
-	char 		co;
+	t_color		co;
 	int			fract;
 }						t_frac;
+
+typedef	struct			s_options
+{
+	int			is_lock;
+	int			is_mouse;
+}						t_options;
 
 typedef struct			s_co
 {
@@ -101,6 +109,7 @@ typedef struct			s_co
 	void				*win_ptr;
 	void				*img_ptr;
 	t_image				*img;
+	t_options			opts;
 }						t_co;
 
 typedef	struct	s_thread_info 
@@ -135,7 +144,7 @@ void					draw_set(t_image *img, t_frac *f);
 void					choose_set(int frac, t_thread_info *ti);
 void					init_mand(t_frac *f);
 void					init_julia(t_frac *f);
-void					redraw(int key, t_thread_info *ti, t_point *mp);
+void					redraw(int key, t_thread_info *ti, t_point *mp, int);
 int						handler_julia(int b, int x, void *p);
 void					modify_julia(t_thread_info *ti, t_point *mp);
 

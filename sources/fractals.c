@@ -40,9 +40,9 @@ void	put_color(t_frac *f, t_image *img)
 				pixel_put_image_color(img, &f->p, &f->black);
 			else
 			{
-				f->color.r = (char)(log(0.16 * f->i + 8) * 230 + 25 + f->co);
-				f->color.g = (char)(sin(0.13 * f->i + 2) * 230 + 25 + f->co);
-				f->color.r = (char)(sin(0.01 * f->i + 1) * 230 + 25 + f->co);
+				f->color.r = (char)(log(0.16 * f->i + 8) * 230 + 25 + f->co.r);
+				f->color.g = (char)(sin(0.13 * f->i + 2) * 230 + 25 + f->co.g);
+				f->color.r = (char)(sin(0.01 * f->i + 1) * 230 + 25 + f->co.b);
 				f->color.alpha = 0;
 				pixel_put_image_color(img, &f->p, &f->color);
 			}
@@ -71,7 +71,9 @@ void	init_mand(t_frac *f)
 	f->p2.y = 1.0;
 	f->zoom = 200;
 	f->iter_max = 40;
-	f->co = 0;
+	f->co.r = 0;
+	f->co.g = 0;
+	f->co.b = 0;
 }
 
 void	init_julia(t_frac *f)
@@ -95,7 +97,9 @@ void	init_julia(t_frac *f)
 	f->p2.y = 1.2;
 	f->zoom = 200;
 	f->iter_max = 40;
-	f->co = 0;
+	f->co.r = 0;
+	f->co.g = 0;
+	f->co.b = 0;
 }
 
 void	chose_frac(t_frac *f)
