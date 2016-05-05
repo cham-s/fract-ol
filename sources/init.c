@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:17 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 21:38:13 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/05 21:48:49 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	menu(t_co *c)
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 635, WHITE, "Scroll -: Z Out");
 
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 655, WHITE, "Lock form: L");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 675, WHITE, "Toggle Menu: M");
 }
 
 void	init_co_img(t_co *c)

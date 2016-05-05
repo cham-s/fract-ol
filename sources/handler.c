@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:26 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 21:37:30 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/05 21:42:13 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	launchfunc(int keycode, t_thread_info *ti)
 	if (keycode == KEY_B)
 		ti->frac.co.b++;
 	if (keycode == KEY_M)
-		ti->show = (ti->lock == 0 ? 1: 0);
+		ti->show = (ti->show == 0 ? 1: 0);
 	if (keycode == KEY_SPACE)
 		ti->lock = (ti->lock == 0 ? 1: 0);
 	draw_set(ti->c->img, &ti->frac);
