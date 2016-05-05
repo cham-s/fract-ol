@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:26:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 17:13:46 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/05 20:50:32 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,22 @@ void	set_background(t_color *color, t_image *img)
 
 void	put_color(t_frac *f, t_image *img)
 {
+	t_color	blk;
+
+	blk.r = 0;
+	blk.g = 0;
+	blk.b = 0;
 	if (f->p.x < WIDTH && f->p.y < HEIGHT)
 	{
 		if (f->p.x >= 0 && f->p.y >= 0)
 		{
 			if (f->i == f->iter_max)
-				pixel_put_image_color(img, &f->p, &f->black);
+				pixel_put_image_color(img, &f->p, &blk);
 			else
 			{
-				f->color.r = (char)(0.16 * f->i + 8) * 230 + 25 + f->co.r;
-				f->color.g = (char)(0.13 * f->i + 2) * 230 + 25 + f->co.g;
-				f->color.r = (char)(0.034 * f->i + 1) * 230 + 25 + f->co.b;
+				f->color.r = sin(0.16 * f->i + 8) * 255 / f->iter_max;
+				f->color.g = ((sin(0.13 * f->i + 2) * 255 / f->iter_max) * 5 * 5);
+				f->color.b = (sin(0.02 *f->i + 4) * 255 / f->iter_max) * 5 * 5 * 5;
 				f->color.alpha = 0;
 				pixel_put_image_color(img, &f->p, &f->color);
 			}
@@ -55,14 +60,6 @@ void	init_mand(t_frac *f)
 	f->c_r = (f->p.x) / f->zoom + f->p1.x;
 	f->c_i = (f->p.y) / f->zoom + f->p1.y;
 	f->i = 0;
-	f->black.r = 255;
-	f->black.g = 255;
-	f->black.b = 255;
-	f->black.alpha = 255;
-	f->color.r = (char)(log(0.16 * f->i + 8) * 230 + 25);
-	f->color.g = (char)(sin(0.13 * f->i + 2) * 230 + 25);
-	f->color.r = (char)(sin(0.01 * f->i + 1) * 230 + 25);
-	f->color.alpha = 0;
 	f->p.x = 0;
 	f->p.y = 0;
 	f->p1.x = -2.5;
@@ -81,14 +78,6 @@ void	init_julia(t_frac *f)
 	f->i = 0;
 	f->c_r = 0.3;
 	f->c_i = -0.0259;
-	f->black.r = 0;
-	f->black.g = 0;
-	f->black.b = 0;
-	f->black.alpha = 255;
-	f->color.r = (char)(log(0.16 * f->i + 8) * 230 + 25);
-	f->color.g = (char)(sin(0.13 * f->i + 2) * 230 + 25);
-	f->color.r = (char)(sin(0.01 * f->i + 1) * 230 + 25);
-	f->color.alpha = 0;
 	f->p.x = 0;
 	f->p.y = 0;
 	f->p1.x = -3;
@@ -137,6 +126,11 @@ void	choose_z(t_frac *f)
 	{
 		f->z_r = (f->z_r * f->z_r) - (f->z_i * f->z_i) + f->c_r;
 		f->z_i = -2 * (f->z_i * f->tmp) + f->c_i;
+	}
+	else if (f->fract == JULIA)
+	{
+		f->z_r = (f->z_r * f->z_r) - (f->z_i * f->z_i) + f->c_r;
+		f->z_i = 2 * (f->z_i * f->tmp) + f->c_i;
 	}
 	else
 	{
@@ -302,7 +296,7 @@ void	draw_set(t_image *img, t_frac *f)
 	i = 0;
 	dt.img = img;
 	dt.f = f;
- 	pthread_mutex_init(&dt.frac_mutex, NULL);
+	pthread_mutex_init(&dt.frac_mutex, NULL);
 
 	while (i < NUM_THREADS)
 	{

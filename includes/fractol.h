@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 16:26:41 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/05 20:37:13 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@
 
 # define ORIGIN_X (WIDTH / 2)
 # define ORIGIN_Y (HEIGHT / 3)
-
-# define KEY	1
-# define MOUSE	2
 
 # define MAND	1	
 # define JULIA	2	
@@ -119,6 +116,8 @@ typedef	struct	s_thread_info
 	t_co				*c;
 	t_frac				frac;		
 	int					frac_set;
+	int					lock;
+	t_color				blk;
 }				t_thread_info;
 
 typedef struct		s_data_thread
@@ -146,7 +145,7 @@ void					draw_set(t_image *img, t_frac *f);
 void					choose_set(int frac, t_thread_info *ti);
 void					init_mand(t_frac *f);
 void					init_julia(t_frac *f);
-void					redraw(int key, t_thread_info *ti, t_point *mp, int);
+void					redraw(int key, t_thread_info *ti);
 int						handler_julia(int b, int x, void *p);
 void					modify_julia(t_thread_info *ti, t_point *mp);
 

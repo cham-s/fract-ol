@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:24:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 16:55:59 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/05 20:45:50 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ static void	*start_fractal(void *data)
 	int					frac_set;
 
 	frac_set = (int )data;
-
+	ti.blk.r = 0;
+	ti.blk.g = 0;
+	ti.blk.b = 0;
+	ti.blk.alpha = 0;
 	ti.c = (t_co *)ft_memalloc(sizeof(t_co));
 	init_co_img(ti.c);
+	ti.lock = 0;
 	choose_set(frac_set, &ti);
 	draw_set(ti.c->img, &ti.frac);
 	mlx_put_image_to_window(ti.c->mlx_ptr, ti.c->win_ptr, ti.c->img_ptr, 0, 0);
@@ -28,7 +32,6 @@ static void	*start_fractal(void *data)
 	mlx_hook(ti.c->win_ptr, MotionNotify, 1L << 6, &handler_julia, (void *)&ti);
 	mlx_mouse_hook(ti.c->win_ptr, &handler_mouse, (void *)&ti);
 	mlx_loop(ti.c->mlx_ptr);
-
 	return (NULL);
 }
 
@@ -47,9 +50,8 @@ int	main(int ac, char **av)
 		pid = fork();
 		if (pid == -1)
 		{
-			//check for validity
 			perror("Error forking");
-			return (-1);
+			return (EXIT_FAILURE);
 		}
 		if (pid == 0)
 			start_fractal((void *)tab_set[i]);
