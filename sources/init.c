@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:17 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/29 19:28:56 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/05 21:38:13 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,21 @@ void	menu(t_co *c)
 {
 	int		s;
 
-	s = WIDTH - 200;
-	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 10, WHITE, "Esc: Exit");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 25, WHITE, "+: Lvl +");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 40, WHITE, "-: Lvl -");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 60, WHITE, "Arrows: Move");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 75, WHITE, "F : Front View ");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 95, WHITE, "H : Top View");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 110, WHITE, "P Num 1:R Rot Up");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 125, WHITE, "P Num 2:R Rot Down");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 140, WHITE, "P Num +: Z In");
-	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 155, WHITE, "P Num - : Z Out");
+	s = 10;
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 500, WHITE, "Esc: Exit");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 515, WHITE, "+: Iter +");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 530, WHITE, "-: Iter -");
+
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 550, WHITE, "Arrows: Move");
+
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 570, WHITE, "R : Chg Col R");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 585, WHITE, "G : Chg Col G");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 600, WHITE, "B : Chg Col B");
+
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 620, WHITE, "Scroll +: Z In");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 635, WHITE, "Scroll -: Z Out");
+
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 655, WHITE, "Lock form: L");
 }
 
 void	init_co_img(t_co *c)
@@ -40,6 +44,4 @@ void	init_co_img(t_co *c)
 	im->data = mlx_get_data_addr(c->img_ptr, &im->bpp, &im->sizeline,
 	&im->endian);
 	c->win_ptr = mlx_new_window(c->mlx_ptr, WIDTH, HEIGHT, "fractol");
-	c->opts.is_lock = 0;
-	c->opts.is_mouse = 0;
 }

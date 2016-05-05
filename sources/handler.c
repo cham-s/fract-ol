@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:26 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 20:41:13 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/05 21:37:30 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,14 @@ void	launchfunc(int keycode, t_thread_info *ti)
 		ti->frac.co.g++;
 	if (keycode == KEY_B)
 		ti->frac.co.b++;
+	if (keycode == KEY_M)
+		ti->show = (ti->lock == 0 ? 1: 0);
 	if (keycode == KEY_SPACE)
 		ti->lock = (ti->lock == 0 ? 1: 0);
 	draw_set(ti->c->img, &ti->frac);
 	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
+	if (ti->show)
+		menu(ti->c);
 }
 
 void	redraw(int key, t_thread_info *ti)
@@ -87,11 +91,10 @@ void	redraw(int key, t_thread_info *ti)
 		|| key == KEY_RIGHT || key == KEY_EQUAL || key == KEY_MIN
 		|| key == KEY_NUM_PLUS || key == KEY_NUM_MINUS
 		|| key == WHEEL_UP || key == WHEEL_DOWN || key == KEY_R 
-		|| key == KEY_G || key == KEY_B || key == KEY_SPACE)
+		|| key == KEY_G || key == KEY_B || key == KEY_SPACE || key == KEY_M)
 		launchfunc(key, ti);
 	else
 		return ;
-	/* menu(c); */
 }
 
 int		handler_key(int keycode, void *pa)
@@ -116,10 +119,9 @@ int		handler_mouse(int b,int x, int y, void *p)
 	t_thread_info	*ti;
 	t_point			mp;
 
-	//printf
+	ti = (t_thread_info *)p;
 	if (y > 0)
 	{
-		ti = (t_thread_info *)p;
 		mp.x = x;
 		mp.y = y;
 		if (b == WHEEL_DOWN)
@@ -127,6 +129,8 @@ int		handler_mouse(int b,int x, int y, void *p)
 		if (b == WHEEL_UP)
 			zoomin(&ti->frac, &mp, 1.5);
 	}
+	if (ti->show)
+		menu(ti->c);
 	return (0);
 }
 
@@ -144,6 +148,8 @@ void	modify_julia(t_thread_info *ti, t_point *mp)
 		ti->frac.c_r -= 0.01;
 	draw_set(ti->c->img, &ti->frac);
 	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
+	if (ti->show)
+		menu(ti->c);
 }
 
 int		handler_julia(int x,int y, void *p)
@@ -158,6 +164,7 @@ int		handler_julia(int x,int y, void *p)
 		mp.y = y;
 		modify_julia(ti, &mp);
 	}
-
+	if (ti->show)
+		menu(ti->c);
 	return (0);
 }

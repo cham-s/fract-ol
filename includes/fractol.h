@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 20:37:13 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/05 21:37:58 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,19 +96,12 @@ typedef struct			s_frac
 	int			fract;
 }						t_frac;
 
-typedef	struct			s_options
-{
-	int			is_lock;
-	int			is_mouse;
-}						t_options;
-
 typedef struct			s_co
 {
 	void				*mlx_ptr;
 	void				*win_ptr;
 	void				*img_ptr;
 	t_image				*img;
-	t_options			opts;
 }						t_co;
 
 typedef	struct	s_thread_info 
@@ -118,6 +111,7 @@ typedef	struct	s_thread_info
 	int					frac_set;
 	int					lock;
 	t_color				blk;
+	int					show;
 }				t_thread_info;
 
 typedef struct		s_data_thread
