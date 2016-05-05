@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:26:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 00:35:52 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/05 17:13:46 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	put_color(t_frac *f, t_image *img)
 				pixel_put_image_color(img, &f->p, &f->black);
 			else
 			{
-				f->color.r = (char)(log(0.16 * f->i + 8) * 230 + 25 + f->co.r);
-				f->color.g = (char)(sin(0.13 * f->i + 2) * 230 + 25 + f->co.g);
-				f->color.r = (char)(sin(0.01 * f->i + 1) * 230 + 25 + f->co.b);
+				f->color.r = (char)(0.16 * f->i + 8) * 230 + 25 + f->co.r;
+				f->color.g = (char)(0.13 * f->i + 2) * 230 + 25 + f->co.g;
+				f->color.r = (char)(0.034 * f->i + 1) * 230 + 25 + f->co.b;
 				f->color.alpha = 0;
 				pixel_put_image_color(img, &f->p, &f->color);
 			}
@@ -104,7 +104,8 @@ void	init_julia(t_frac *f)
 
 void	chose_frac(t_frac *f)
 {
-	if (f->fract == MAND || f->fract == BURN)
+	if (f->fract == MAND || f->fract == BURN 
+			|| f->fract == BIRD || f->fract == TRI)
 	{
 		f->c_r = (f->p.x) / f->zoom + f->p1.x;
 		f->c_i = (f->p.y) / f->zoom + f->p1.y;
@@ -126,6 +127,16 @@ void	choose_z(t_frac *f)
 	{
 		f->z_r = fabs((f->z_r * f->z_r) - (f->z_i * f->z_i) + f->c_r);
 		f->z_i = fabs(2 * (f->z_i * f->tmp) + f->c_i);
+	}
+	else if (f->fract == BIRD)
+	{
+		f->z_r = ((f->z_r * f->z_r) - (f->z_i * f->z_i * 3)) * fabs(f->z_r) + f->c_r;
+		f->z_i = ((f->tmp * f->tmp * 3) - (f->z_i * f->z_i)) * fabs(f->z_i) + f->c_i;
+	}
+	else if (f->fract == TRI)
+	{
+		f->z_r = (f->z_r * f->z_r) - (f->z_i * f->z_i) + f->c_r;
+		f->z_i = -2 * (f->z_i * f->tmp) + f->c_i;
 	}
 	else
 	{
@@ -306,23 +317,3 @@ void	draw_set(t_image *img, t_frac *f)
 	}
 	pthread_mutex_destroy(&dt.frac_mutex);
 }
-
-/* void	draw_set(t_image *img, t_frac *f) */
-/* { */
-/* 	t_data_thread		dt; */
-/* 	pthread_t			thread_dr; */
-/* 	pthread_t			thread_dt; */
-/* 	fn_draw_worker		workers[2]; */
-/*  */
-/* 	workers[0] = draw_worker_one; */
-/* 	workers[1] = draw_worker_two; */
-/*  */
-/* 	dt.img = img; */
-/* 	dt.f = f; */
-/* 	pthread_mutex_init(&dt.frac_mutex, NULL); */
-/*  */
-/* 	launch_thread(&thread_dr, workers[0], &dt); */
-/* 	launch_thread(&thread_dt, workers[1], &dt); */
-/* 	wait_thread(thread_dr); */
-/* 	wait_thread(thread_dt); */
-/* } */

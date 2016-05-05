@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:26 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 00:30:08 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/05 15:24:22 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,20 @@ void	launchfunc(int keycode, t_thread_info *ti, t_point *mp, int e)
 	if (keycode == KEY_DOWN && e == MOUSE)
 		move_f(&ti->frac, 0, 10);
 	if (keycode == KEY_NUM_1)
+	{
 		ti->frac.co.r++;
+		printf("r: %d\n",ti->frac.co.r++);
+	}
 	if (keycode == KEY_NUM_2)
+	{
 		ti->frac.co.g++;
-	if (keycode == KEY_B)
+		printf("g: %d\n",ti->frac.co.g++);
+	}
 	if (keycode == KEY_NUM_3)
+	{
 		ti->frac.co.b++;
+		printf("b: %d\n",ti->frac.co.b++);
+	}
 	draw_set(ti->c->img, &ti->frac);
 	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
 }

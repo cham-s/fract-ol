@@ -4,6 +4,7 @@ LIB = libft/libft.a
 FLAGS = -g -Wall -Werror -Wextra -Ofast 
 LIBGRPH = -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit -D_REENTRANT -lpthread
 INCLUDES = -I includes -I libft/includes -I minilibx_macos
+INC	= includes/fractol.h
 OBJS = main.o parsing.o line.o init.o fractals.o handler.o
 .PHONY: all clean fclean re
 
@@ -18,9 +19,8 @@ $(LIB):
 	make -C libft/
 	make -C minilibx_macos
 
-%.c : %.h
 
-%.o : %.c 
+%.o : %.c $(INC)
 	$(CC) -c $(FLAGS) $(INCLUDES) $< -o $@ 
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 00:28:41 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/05 16:26:41 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 # define MAND	1	
 # define JULIA	2	
 # define BURN	3
+# define BIRD	4	
+# define TRI	5	
 
 # define MAX_FRACTALS 4
 # define NUM_THREADS 4
