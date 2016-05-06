@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:28:59 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/25 17:32:53 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 16:27:32 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	put_color(t_frac *f, t_image *img)
 			else
 			{
 				f->color.r = sin(0.16 * f->i + 8) * 255 / f->iter_max + f->co.r;
-				f->color.g = ((sin(0.13 * f->i + 2) * 255 / f->iter_max) * SQRT(5)) + f->co.g;
-				f->color.b = (sin(0.02 *f->i + 4) * 255 / f->iter_max) * CUB(5) + f->co.b;
+				f->color.g = CG(0.13, f->i, 2, 255, f->iter_max, 5, f->co.g);
+				f->color.b = CB(0.02, f->i, 4, 255, f->iter_max, 5, f->co.b);
 				f->color.alpha = 0;
 				pixel_put_image_color(img, &f->p, &f->color);
 			}

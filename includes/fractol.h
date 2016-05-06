@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 21:37:58 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 16:25:33 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@
 
 # define SQRT(a) (a * a)
 # define CUB(a) (a * a * a)
+# define CG(a, b, c, d, e, f, g) ((sin(a * b + c) * d / e) * SQRT(f)) + g
+# define CB(a, b, c, d, e, f, g) (sin(a * b + c) * d / e) * CUB(f) + g
 
 typedef	struct			s_color
 {
