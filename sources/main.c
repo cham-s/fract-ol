@@ -37,12 +37,12 @@ static void	*start_fractal(void *data)
 	return (NULL);
 }
 
-int	main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	pid_t				pid;
-	int					i;
-	long				tab_set[MAX_FRACTALS];
-	int					nbr_fractal;
+	pid_t	pid;
+	int		i;
+	long	tab_set[MAX_FRACTALS];
+	int		nbr_fractal;
 
 	i = 0;
 	ft_memset(tab_set, 0, MAX_FRACTALS);

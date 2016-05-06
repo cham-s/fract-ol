@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-static void usage(void)
+static void	usage(void)
 {
 	ft_putstr_fd("usage:\t", 2);
 	ft_putendl_fd("./fractol -[m | j | b | t | bi]", 2);
@@ -25,7 +25,7 @@ static void usage(void)
 	exit(EXIT_FAILURE);
 }
 
-void	choose_set(int frac, t_thread_info *ti)
+void		choose_set(int frac, t_thread_info *ti)
 {
 	ti->frac.fract = frac;
 	if (frac == MAND)
@@ -56,7 +56,7 @@ static int	fract_set(char *option)
 		return (0);
 }
 
-void	check_args(int ac, char **av, long tab_set[MAX_FRACTALS], int *nf)
+void		check_args(int ac, char **av, long tab_set[MAX_FRACTALS], int *nf)
 {
 	int	i;
 	int f;
@@ -69,7 +69,8 @@ void	check_args(int ac, char **av, long tab_set[MAX_FRACTALS], int *nf)
 	while (i < ac)
 	{
 		if (!ft_strcmp("-m", av[i]) || !ft_strcmp("-j", av[i]) 
-		|| !ft_strcmp("-b", av[i]) || !ft_strcmp("-bi", av[i]) || !ft_strcmp("-t", av[i]))
+		|| !ft_strcmp("-b", av[i]) || !ft_strcmp("-bi", av[i]) 
+		|| !ft_strcmp("-t", av[i]))
 		{
 			tab_set[f++] = fract_set(av[i]);
 			*nf += 1;

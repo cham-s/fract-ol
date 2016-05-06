@@ -64,8 +64,10 @@ void	choose_z(t_frac *f)
 	}
 	else if (f->fract == BIRD)
 	{
-		f->z_r = ((f->z_r * f->z_r) - (f->z_i * f->z_i * 3)) * fabs(f->z_r) + f->c_r;
-		f->z_i = ((f->tmp * f->tmp * 3) - (f->z_i * f->z_i)) * fabs(f->z_i) + f->c_i;
+		f->z_r = ((f->z_r * f->z_r) - (f->z_i * f->z_i * 3)) *
+		fabs(f->z_r) + f->c_r;
+		f->z_i = ((f->tmp * f->tmp * 3) - (f->z_i * f->z_i)) *
+		fabs(f->z_i) + f->c_i;
 	}
 	else
 		choose_z2(f);
