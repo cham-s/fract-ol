@@ -131,6 +131,8 @@ int		handler_mouse(int b,int x, int y, void *p)
 		if (b == WHEEL_UP)
 			zoomin(&ti->frac, &mp, 1.5);
 	}
+	draw_set(ti->c->img, &ti->frac);
+	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
 	if (ti->show)
 		menu(ti->c);
 	return (0);
