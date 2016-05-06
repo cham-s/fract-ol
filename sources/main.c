@@ -28,7 +28,7 @@ static void	*start_fractal(void *data)
 	ti.show = 2;
 	choose_set(frac_set, &ti);
 	draw_set(ti.c->img, &ti.frac);
-	mlx_put_image_to_window(ti.c->mlx_ptr, ti.c->win_ptr, ti.c->img_ptr, 0, 0);
+	IMG_TO_WINDOW(ti.c->mlx_ptr, ti.c->win_ptr, ti.c->img_ptr);
 	mlx_hook(ti.c->win_ptr, KeyPress, 3, &handler_key, (void *)&ti);
 	mlx_hook(ti.c->win_ptr, MotionNotify, 1L << 6, &handler_julia, (void *)&ti);
 	mlx_mouse_hook(ti.c->win_ptr, &handler_mouse, (void *)&ti);

@@ -71,8 +71,8 @@ void	put_color(t_frac *f, t_image *img)
 			else
 			{
 				f->color.r = sin(0.16 * f->i + 8) * 255 / f->iter_max + f->co.r;
-				f->color.g = ((sin(0.13 * f->i + 2) * 255 / f->iter_max) * 5 * 5) + f->co.g;
-				f->color.b = (sin(0.02 *f->i + 4) * 255 / f->iter_max) * 5 * 5 * 5 + f->co.b;
+				f->color.g = ((sin(0.13 * f->i + 2) * 255 / f->iter_max) * SQRT(5)) + f->co.g;
+				f->color.b = (sin(0.02 *f->i + 4) * 255 / f->iter_max) * CUB(5) + f->co.b;
 				f->color.alpha = 0;
 				pixel_put_image_color(img, &f->p, &f->color);
 			}

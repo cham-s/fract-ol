@@ -33,7 +33,7 @@ int		handler_mouse(int b,int x, int y, void *p)
 			zoomin(&ti->frac, &mp, 1.5);
 	}
 	draw_set(ti->c->img, &ti->frac);
-	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
+	IMG_TO_WINDOW(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr);
 	if (ti->show)
 		menu(ti->c);
 	return (0);
@@ -59,7 +59,7 @@ int		handler_julia(int x,int y, void *p)
 void	modify_julia(t_thread_info *ti, t_point *mp)
 {
 	set_background(&ti->blk, ti->c->img);
-	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
+	IMG_TO_WINDOW(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr);
 	if (mp->x < WIDTH / 2 && mp->y < HEIGHT / 2)
 		ti->frac.c_i -= 0.01;
 	if (mp->x > WIDTH / 2 && mp->y < HEIGHT / 2)
@@ -69,7 +69,7 @@ void	modify_julia(t_thread_info *ti, t_point *mp)
 	if (mp->x > WIDTH / 2 && mp->y > HEIGHT / 2)
 		ti->frac.c_r -= 0.01;
 	draw_set(ti->c->img, &ti->frac);
-	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
+	IMG_TO_WINDOW(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr);
 	if (ti->show)
 		menu(ti->c);
 }

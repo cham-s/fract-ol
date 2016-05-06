@@ -22,6 +22,9 @@
 # include "libft.h"
 # include "keyboard.h"
 
+# define IMG_TO_WINDOW(m_ptr, w_ptr, i_ptr) mlx_put_image_to_window(m_ptr,\
+					w_ptr, i_ptr, 0, 0)
+
 # define RED		0xFF0000
 # define GREEN		0x00FF00
 # define BLUE		0x0000FF
@@ -44,6 +47,9 @@
 
 # define MAX_FRACTALS 5 
 # define NUM_THREADS 4
+
+# define SQRT(a) (a * a)
+# define CUB(a) (a * a * a)
 
 typedef	struct			s_color
 {

@@ -20,16 +20,12 @@ void	menu(t_co *c)
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 500, WHITE, "Esc: Exit");
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 515, WHITE, "+: Iter +");
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 530, WHITE, "-: Iter -");
-
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 550, WHITE, "Arrows: Move");
-
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 570, WHITE, "R : Chg Col R");
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 585, WHITE, "G : Chg Col G");
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 600, WHITE, "B : Chg Col B");
-
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 620, WHITE, "Scroll +: Z In");
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 635, WHITE, "Scroll -: Z Out");
-
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 655, WHITE, "Lock form: L");
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 675, WHITE, "Toggle Menu: M");
 }
