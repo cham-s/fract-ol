@@ -6,45 +6,45 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 18:33:11 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/06 20:53:51 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 23:24:37 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYBOARD_H
-# define KeyPress                2
-# define KeyRelease              3
-# define ButtonPress             4
-# define ButtonRelease           5
-# define MotNoty				6
-# define EnterNotify             7
-# define LeaveNotify             8
-# define FocusIn                 9
-# define FocusOut                10
-# define KeymapNotify            11
-# define Expose                  12
-# define GraphicsExpose          13
-# define NoExpose                14
-# define VisibilityNotify        15
-# define CreateNotify            16
-# define DestroyNotify           17
-# define UnmapNotify             18
-# define MapNotify               19
-# define MapRequest              20
-# define ReparentNotify          21
-# define ConfigureNotify         22
-# define ConfigureRequest        23
-# define GravityNotify           24
-# define ResizeRequest           25
-# define CirculateNotify         26
-# define CirculateRequest        27
-# define PropertyNotify          28
-# define SelectionClear          29
-# define SelectionRequest        30
-# define SelectionNotify         31
-# define ColormapNotify          32
-# define ClientMessage           33
-# define MappingNotify           34
-# define GenericEvent            35
+# define KEYPRESS                2
+# define KEYRELEASE              3
+# define BUTTONPRESS             4
+# define BUTTONRELEASE           5
+# define MOTNOTY				6
+# define ENTERNOTIFY             7
+# define LEAVENOTIFY             8
+# define FOCUSIN                 9
+# define FOCUSOUT                10
+# define KEYMAPNOTIFY            11
+# define EXPOSE                  12
+# define GRAPHICSEXPOSE          13
+# define NOEXPOSE                14
+# define VISIBILITYNOTIFY        15
+# define CREATENOTIFY            16
+# define DESTROYNOTIFY           17
+# define UNMAPNOTIFY             18
+# define MAPNOTIFY               19
+# define MAPREQUEST              20
+# define REPARENTNOTIFY          21
+# define CONFIGURENOTIFY         22
+# define CONFIGUREREQUEST        23
+# define GRAVITYNOTIFY           24
+# define RESIZEREQUEST           25
+# define CIRCULATENOTIFY         26
+# define CIRCULATEREQUEST        27
+# define PROPERTYNOTIFY          28
+# define SELECTIONCLEAR          29
+# define SELECTIONREQUEST        30
+# define SELECTIONNOTIFY         31
+# define COLORMAPNOTIFY          32
+# define CLIENTMESSAGE           33
+# define MAPPINGNOTIFY           34
+# define GENERICEVENT            35
 
 # define KEYBOARD_H
 # define KEY_LEFT 123

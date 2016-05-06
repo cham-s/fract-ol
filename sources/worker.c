@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/06 17:01:09 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/06 22:47:50 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 23:43:51 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	*draw_worker(void *p)
 		while (dt->f->p.y < HEIGHT)
 		{
 			chose_frac(dt->f);
-			while ((dt->f->z_r * dt->f->z_r) + (SQRT(dt->f->z_i)) < 
+			while ((dt->f->z_r * dt->f->z_r) + (SQRT(dt->f->z_i)) <
 					4 && dt->f->i < dt->f->iter_max)
 			{
 				dt->f->tmp = dt->f->z_r;
@@ -41,7 +41,8 @@ static void	*draw_worker(void *p)
 	return (NULL);
 }
 
-static void	launch_thread(pthread_t *t, fn_draw_worker worker, t_data_thread *dt)
+static void	launch_thread(pthread_t *t, void *(worker)(void *p),
+						t_data_thread *dt)
 {
 	int	ret;
 
@@ -81,14 +82,13 @@ static void	init_starts_ends(int starts[NUM_THREADS], int ends[NUM_THREADS])
 	}
 }
 
-void	draw_set(t_image *img, t_frac *f)
+void		draw_set(t_image *img, t_frac *f)
 {
 	t_data_thread		dt;
 	pthread_t			draw_threads[NUM_THREADS];
 	int					i;
 	int					starts[NUM_THREADS];
 	int					ends[NUM_THREADS];
-
 
 	init_starts_ends(starts, ends);
 	i = 0;

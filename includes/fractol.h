@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/06 22:48:06 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 23:47:58 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,14 @@
 # include <stdlib.h>
 # include <errno.h>
 # include <math.h>
-# include <pthread.h>	 
+# include <pthread.h>
 # include "mlx.h"
 # include "libft.h"
 # include "keyboard.h"
 
-# define IMG_TO_WINDOW(m_ptr, w_ptr, i_ptr) mlx_put_image_to_window(m_ptr,\
-					w_ptr, i_ptr, 0, 0)
-
 /*
-** Colors 
+** Colors
 */
-
 # define RED		0xFF0000
 # define GREEN		0x00FF00
 # define BLUE		0x0000FF
@@ -37,30 +33,29 @@
 # define GREY		0x585957
 # define SPEBLUE	0xD9853B
 
-
 /*
-** Window Size 
+** Window Size
 */
 
-# define WIDTH 900 
-# define HEIGHT 700 
+# define WIDTH 900
+# define HEIGHT 700
 
 /*
-** Fractals 
+** Fractals
 */
 
-# define MAND	1	
-# define JULIA	2	
+# define MAND	1
+# define JULIA	2
 # define BURN	3
-# define BIRD	4	
-# define TRI	5	
+# define BIRD	4
+# define TRI	5
 
 /*
-** Thread Macros 
+** Thread Macros
 */
 
-# define MAX_FRACTALS 5 
-# define NUM_THREADS 6 
+# define MAX_FRACTALS 5
+# define NUM_THREADS 6
 # define STEP (WIDTH / NUM_THREADS)
 
 /*
@@ -71,26 +66,27 @@
 # define CUB(a) (a * a * a)
 # define CG(a, b, c, d, e, f, g) ((sin(a * b + c) * d / e) * SQRT(f)) + g
 # define CB(a, b, c, d, e, f, g) (sin(a * b + c) * d / e) * CUB(f) + g
+# define IMG_TO_WINDOW(m, w, i) mlx_put_image_to_window(m, w, i, 0, 0)
 
 typedef	struct			s_color
 {
-	unsigned char r;
-	unsigned char g;
-	unsigned char b;
-	unsigned char alpha;
+	unsigned char		r;
+	unsigned char		g;
+	unsigned char		b;
+	unsigned char		alpha;
 }						t_color;
 
 typedef struct			s_point
 {
-	int				x;
-	int 			y;
-	int				h;
+	int					x;
+	int					y;
+	int					h;
 }						t_point;
 
 typedef struct			s_fpoint
 {
-	double			x;
-	double			y;
+	double				x;
+	double				y;
 }						t_fpoint;
 
 typedef struct			s_image
@@ -104,23 +100,23 @@ typedef struct			s_image
 
 typedef struct			s_frac
 {
-	int			iter_max;
-	t_point		p;
-	t_fpoint	p1;
-	t_fpoint	p2;
-	double		zoom;
-	double		c_r;
-	double		c_i;
-	double		z_r;
-	double		z_i;
-	double		m_r;
-	double		m_i;
-	double		i;
-	double		tmp;
-	t_color		black;
-	t_color		color;
-	t_color		co;
-	int			fract;
+	int					iter_max;
+	t_point				p;
+	t_fpoint			p1;
+	t_fpoint			p2;
+	double				zoom;
+	double				c_r;
+	double				c_i;
+	double				z_r;
+	double				z_i;
+	double				m_r;
+	double				m_i;
+	double				i;
+	double				tmp;
+	t_color				black;
+	t_color				color;
+	t_color				co;
+	int					fract;
 }						t_frac;
 
 typedef struct			s_co
@@ -131,35 +127,33 @@ typedef struct			s_co
 	t_image				*img;
 }						t_co;
 
-typedef	struct	s_thread_info 
+typedef	struct			s_thread_info
 {
 	t_co				*c;
-	t_frac				frac;		
+	t_frac				frac;
 	int					frac_set;
 	int					lock;
 	t_color				blk;
 	int					show;
-}				t_thread_info;
+}						t_thread_info;
 
-typedef struct		s_data_thread
+typedef struct			s_data_thread
 {
 	t_image				*img;
 	t_frac				*f;
 	pthread_mutex_t		frac_mutex;
 	int					start;
 	int					end;
-}					t_data_thread;
-
-typedef void *(*fn_draw_worker)(void *p);
+}						t_data_thread;
 
 void					init_co_img(t_co *c);
 void					pixel_put_image(t_image *image, t_point *p);
-void					check_args(int ac, char **av, long tab_set[MAX_FRACTALS],
-						int *nf);
+void					check_args(int ac, char **av, long tab_set[MAX_FRACTALS]
+						, int *nf);
 int						handler_key(int keycode, void *param);
-int						handler_mouse(int b,int x, int y, void *p);
-void					pixel_put_image_color(t_image *i, t_point *p,
-						t_color *c);
+int						handler_mouse(int b, int x, int y, void *p);
+void					pixel_put_image_color(t_image *i, t_point *p
+						, t_color *c);
 void					set_background(t_color *color, t_image *img);
 void					menu(t_co *c);
 void					julia(t_image *img);
