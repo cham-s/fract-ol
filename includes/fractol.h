@@ -145,5 +145,12 @@ void					init_burn(t_frac *f);
 void					redraw(int key, t_thread_info *ti);
 int						handler_julia(int b, int x, void *p);
 void					modify_julia(t_thread_info *ti, t_point *mp);
+void					*draw_worker_one(void *p);
+void					*draw_worker_two(void *p);
+void					*draw_worker_three(void *p);
+void					*draw_worker_four(void *p);
+void					put_color(t_frac *f, t_image *img);
+void					chose_frac(t_frac *f);
+void					choose_z(t_frac *f);
 
 #endif

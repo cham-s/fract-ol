@@ -5,7 +5,7 @@ FLAGS = -g -Wall -Werror -Wextra -Ofast
 LIBGRPH = -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit -D_REENTRANT -lpthread
 INCLUDES = -I includes -I libft/includes -I minilibx_macos
 INC	= includes/fractol.h
-OBJS = main.o parsing.o line.o init.o fractals.o handler.o
+OBJS = main.o parsing.o draw.o init.o fractals.o handler.o init_fractals.o worker.o
 .PHONY: all clean fclean re
 
 VPATH = sources/:minilibx_macos
