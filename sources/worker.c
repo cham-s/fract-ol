@@ -13,7 +13,8 @@ void	*draw_worker_one(void *p)
 		while (dt->f->p.y < HEIGHT)
 		{
 			chose_frac(dt->f);
-			while ((dt->f->z_r * dt->f->z_r) + (dt->f->z_i * dt->f->z_i) < 4 && dt->f->i < dt->f->iter_max)
+			while ((dt->f->z_r * dt->f->z_r) + (SQRT(dt->f->z_i)) < 
+					4 && dt->f->i < dt->f->iter_max)
 			{
 				dt->f->tmp = dt->f->z_r;
 				choose_z(dt->f);
@@ -42,7 +43,7 @@ void	*draw_worker_two(void *p)
 		while (dt->f->p.y < HEIGHT)
 		{
 			chose_frac(dt->f);
-			while ((dt->f->z_r * dt->f->z_r) + (dt->f->z_i * dt->f->z_i) < 4 && dt->f->i < dt->f->iter_max)
+			while ((dt->f->z_r * dt->f->z_r) + (SQRT(dt->f->z_i)) < 4 && dt->f->i < dt->f->iter_max)
 			{
 				dt->f->tmp = dt->f->z_r;
 				choose_z(dt->f);
@@ -71,7 +72,7 @@ void	*draw_worker_three(void *p)
 		while (dt->f->p.y < HEIGHT)
 		{
 			chose_frac(dt->f);
-			while ((dt->f->z_r * dt->f->z_r) + (dt->f->z_i * dt->f->z_i) < 4 && dt->f->i < dt->f->iter_max)
+			while ((dt->f->z_r * dt->f->z_r) + (SQRT(dt->f->z_i)) < 4 && dt->f->i < dt->f->iter_max)
 			{
 				dt->f->tmp = dt->f->z_r;
 				choose_z(dt->f);
@@ -100,7 +101,7 @@ void	*draw_worker_four(void *p)
 		while (dt->f->p.y < HEIGHT)
 		{
 			chose_frac(dt->f);
-			while ((dt->f->z_r * dt->f->z_r) + (dt->f->z_i * dt->f->z_i) < 4 && dt->f->i < dt->f->iter_max)
+			while ((dt->f->z_r * dt->f->z_r) + (SQRT(dt->f->z_i)) < 4 && dt->f->i < dt->f->iter_max)
 			{
 				dt->f->tmp = dt->f->z_r;
 				choose_z(dt->f);
