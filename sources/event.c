@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/06 17:01:00 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/06 17:01:01 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 17:08:47 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		handler_key(int keycode, void *pa)
 	return (0);
 }
 
-int		handler_mouse(int b,int x, int y, void *p)
+int		handler_mouse(int b, int x, int y, void *p)
 {
 	t_thread_info	*ti;
 	t_point			mp;
@@ -45,13 +45,13 @@ int		handler_mouse(int b,int x, int y, void *p)
 			zoomin(&ti->frac, &mp, 1.5);
 		draw_set(ti->c->img, &ti->frac);
 		IMG_TO_WINDOW(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr);
-	if (ti->show)
-		menu(ti->c);
+		if (ti->show)
+			menu(ti->c);
 	}
 	return (0);
 }
 
-int		handler_julia(int x,int y, void *p)
+int		handler_julia(int x, int y, void *p)
 {
 	t_thread_info	*ti;
 	t_point			mp;
@@ -85,4 +85,3 @@ void	modify_julia(t_thread_info *ti, t_point *mp)
 	if (ti->show)
 		menu(ti->c);
 }
-

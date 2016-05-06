@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:24:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 21:39:13 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 17:17:53 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	*start_fractal(void *data)
 	t_thread_info		ti;
 	int					frac_set;
 
-	frac_set = (int )data;
+	frac_set = (int)data;
 	ti.blk.r = 0;
 	ti.blk.g = 0;
 	ti.blk.b = 0;
@@ -58,8 +58,8 @@ int			main(int ac, char **av)
 		if (pid == 0)
 			start_fractal((void *)tab_set[i]);
 		i++;
-	} 
+	}
 	if (pid > 0)
-			waitpid(-1, NULL, 0);
+		waitpid(-1, NULL, 0);
 	return (EXIT_SUCCESS);
 }

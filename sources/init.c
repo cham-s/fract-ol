@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:11:17 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 21:48:49 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 17:16:18 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	menu(t_co *c)
 	int		s;
 
 	s = 10;
-	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 500, WHITE, "Esc: Exit");
+	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 485, WHITE, "RESET: Backspace");
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 515, WHITE, "+: Iter +");
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 530, WHITE, "-: Iter -");
 	mlx_string_put(c->mlx_ptr, c->win_ptr, s, 550, WHITE, "Arrows: Move");

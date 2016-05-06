@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:28:59 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/06 16:27:32 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 17:07:25 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	put_color(t_frac *f, t_image *img)
 		}
 	}
 }
+
 void	set_background(t_color *color, t_image *img)
 {
 	t_point p;

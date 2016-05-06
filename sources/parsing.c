@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:30:40 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/05 17:06:07 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 17:19:47 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	fract_set(char *option)
 		return (BIRD);
 	else if (!ft_strcmp("-t", option))
 		return (TRI);
-	else 
+	else
 		return (0);
 }
 
@@ -68,8 +68,8 @@ void		check_args(int ac, char **av, long tab_set[MAX_FRACTALS], int *nf)
 		usage();
 	while (i < ac)
 	{
-		if (!ft_strcmp("-m", av[i]) || !ft_strcmp("-j", av[i]) 
-		|| !ft_strcmp("-b", av[i]) || !ft_strcmp("-bi", av[i]) 
+		if (!ft_strcmp("-m", av[i]) || !ft_strcmp("-j", av[i])
+		|| !ft_strcmp("-b", av[i]) || !ft_strcmp("-bi", av[i])
 		|| !ft_strcmp("-t", av[i]))
 		{
 			tab_set[f++] = fract_set(av[i]);
@@ -77,7 +77,7 @@ void		check_args(int ac, char **av, long tab_set[MAX_FRACTALS], int *nf)
 			i++;
 			continue ;
 		}
-		else 
+		else
 			usage();
 	}
 }
