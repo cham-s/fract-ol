@@ -15,7 +15,7 @@
 static void usage(void)
 {
 	ft_putstr_fd("usage:\t", 2);
-	ft_putendl_fd("./fractol -[m | j | b]", 2);
+	ft_putendl_fd("./fractol -[m | j | b | t | bi]", 2);
 	ft_putendl_fd("help: Draw 4 fractals set at max.", 2);
 	ft_putendl_fd("\t-j \t\tDraw julia set.", 2);
 	ft_putendl_fd("\t-m \t\tDraw mandelbrot set.", 2);
@@ -33,11 +33,11 @@ void	choose_set(int frac, t_thread_info *ti)
 	else if (frac == JULIA)
 		init_julia(&ti->frac);
 	else if (frac == BURN)
-		init_mand(&ti->frac);
+		init_burn(&ti->frac);
 	else if (frac == TRI)
-		init_mand(&ti->frac);
+		init_tri(&ti->frac);
 	else if (frac == BIRD)
-		init_mand(&ti->frac);
+		init_bird(&ti->frac);
 }
 
 static int	fract_set(char *option)
@@ -64,7 +64,7 @@ void	check_args(int ac, char **av, long tab_set[MAX_FRACTALS], int *nf)
 	*nf = 0;
 	i = 1;
 	f = 0;
-	if (ac > 5 || ac < 2)
+	if (ac > MAX_FRACTALS + 1 || ac < 2)
 		usage();
 	while (i < ac)
 	{

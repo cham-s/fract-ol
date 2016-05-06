@@ -62,11 +62,57 @@ void	init_mand(t_frac *f)
 	f->i = 0;
 	f->p.x = 0;
 	f->p.y = 0;
-	f->p1.x = -2.5;
-	f->p1.y = -1;
-	f->p2.x = 1.0;
-	f->p2.y = 1.0;
+	f->p1.x = -2.75;
+	f->p1.y = -1.65;
 	f->zoom = 200;
+	f->iter_max = 40;
+	f->co.r = 0;
+	f->co.g = 0;
+	f->co.b = 0;
+}
+
+void	init_tri(t_frac *f)
+{
+	f->c_r = (f->p.x) / f->zoom + f->p1.x;
+	f->c_i = (f->p.y) / f->zoom + f->p1.y;
+	f->i = 0;
+	f->p.x = 0;
+	f->p.y = 0;
+	f->p1.x = -2.75;
+	f->p1.y = -1.65;
+	f->zoom = 200;
+	f->iter_max = 40;
+	f->co.r = 0;
+	f->co.g = 0;
+	f->co.b = 0;
+}
+
+void	init_bird(t_frac *f)
+{
+	f->c_r = (f->p.x) / f->zoom + f->p1.x;
+	f->c_i = (f->p.y) / f->zoom + f->p1.y;
+	f->i = 0;
+	f->p.x = 0;
+	f->p.y = 0;
+	f->p1.x = -2.75;
+	f->p1.y = -1.65;
+	f->zoom = 200;
+	f->iter_max = 40;
+	f->co.r = 0;
+	f->co.g = 0;
+	f->co.b = 0;
+}
+
+void	init_burn(t_frac *f)
+{
+	f->c_r = (f->p.x) / f->zoom + f->p1.x;
+	f->c_i = (f->p.y) / f->zoom + f->p1.y;
+	f->i = 0;
+	f->p.x = 0;
+	f->p.y = 0;
+	f->p1.x = -1.822084;
+	f->p1.y = -0.086814;
+	f->zoom = 5125;
 	f->iter_max = 40;
 	f->co.r = 0;
 	f->co.g = 0;
@@ -76,14 +122,12 @@ void	init_mand(t_frac *f)
 void	init_julia(t_frac *f)
 {
 	f->i = 0;
-	f->c_r = 0.3;
-	f->c_i = -0.0259;
+	f->c_r = -0.67;
+	f->c_i = -0.4159;
 	f->p.x = 0;
 	f->p.y = 0;
-	f->p1.x = -3;
-	f->p1.y = -1.2;
-	f->p2.x = 4;
-	f->p2.y = 1.2;
+	f->p1.x = -2.3;
+	f->p1.y = -1.7;
 	f->zoom = 200;
 	f->iter_max = 40;
 	f->co.r = 0;
@@ -132,6 +176,11 @@ void	choose_z(t_frac *f)
 		f->z_r = (f->z_r * f->z_r) - (f->z_i * f->z_i) + f->c_r;
 		f->z_i = 2 * (f->z_i * f->tmp) + f->c_i;
 	}
+	/* else */
+	/* { */
+	/* 	f->z_r = fabs(((f->z_r * f->z_r * f->z_r) - 3 * (f->z_i * f->z_i * f->z_r))) - f->c_i; */
+	/* 	f->z_i = 3 * (f->tmp * f->tmp * f->z_i) - (f->z_i * f->z_i * f->z_i) - f->c_r; */
+	/* } */
 	else
 	{
 		f->z_r = (f->z_r * f->z_r) - (f->z_i * f->z_i) + f->c_r;

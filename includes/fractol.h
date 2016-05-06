@@ -42,7 +42,7 @@
 # define BIRD	4	
 # define TRI	5	
 
-# define MAX_FRACTALS 4
+# define MAX_FRACTALS 5 
 # define NUM_THREADS 4
 
 typedef	struct			s_color
@@ -139,6 +139,9 @@ void					draw_set(t_image *img, t_frac *f);
 void					choose_set(int frac, t_thread_info *ti);
 void					init_mand(t_frac *f);
 void					init_julia(t_frac *f);
+void					init_tri(t_frac *f);
+void					init_bird(t_frac *f);
+void					init_burn(t_frac *f);
 void					redraw(int key, t_thread_info *ti);
 int						handler_julia(int b, int x, void *p);
 void					modify_julia(t_thread_info *ti, t_point *mp);

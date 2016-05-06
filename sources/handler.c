@@ -79,6 +79,8 @@ void	launchfunc(int keycode, t_thread_info *ti)
 		ti->show = (ti->show == 0 ? 1: 0);
 	if (keycode == KEY_SPACE)
 		ti->lock = (ti->lock == 0 ? 1: 0);
+	//
+	printf("p1.x %lf p1.y %lf zoom %lf\n", ti->frac.p1.x, ti->frac.p1.y, ti->frac.zoom);
 	draw_set(ti->c->img, &ti->frac);
 	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
 	if (ti->show)
@@ -146,6 +148,7 @@ void	modify_julia(t_thread_info *ti, t_point *mp)
 		ti->frac.c_r += 0.01;
 	if (mp->x > WIDTH / 2 && mp->y > HEIGHT / 2)
 		ti->frac.c_r -= 0.01;
+	printf("cr %lf ci %lf\n", ti->frac.c_r, ti->frac.c_i);
 	draw_set(ti->c->img, &ti->frac);
 	mlx_put_image_to_window(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr, 0, 0);
 	if (ti->show)
