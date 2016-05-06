@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:24:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/06 17:17:53 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 19:58:28 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	*start_fractal(void *data)
 	draw_set(ti.c->img, &ti.frac);
 	IMG_TO_WINDOW(ti.c->mlx_ptr, ti.c->win_ptr, ti.c->img_ptr);
 	mlx_hook(ti.c->win_ptr, KeyPress, 3, &handler_key, (void *)&ti);
-	mlx_hook(ti.c->win_ptr, MotionNotify, 1L << 6, &handler_julia, (void *)&ti);
+	if (ti.frac.fract == JULIA)
+		mlx_hook(ti.c->win_ptr, MotNoty, 1L << 6, &handler_julia, (void *)&ti);
 	mlx_mouse_hook(ti.c->win_ptr, &handler_mouse, (void *)&ti);
 	menu(ti.c);
 	mlx_loop(ti.c->mlx_ptr);

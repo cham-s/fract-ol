@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/06 16:35:04 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 22:48:06 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@
 */
 
 # define MAX_FRACTALS 5 
-# define NUM_THREADS 4
+# define NUM_THREADS 6 
+# define STEP (WIDTH / NUM_THREADS)
 
 /*
 ** Maths defines
@@ -145,6 +146,8 @@ typedef struct		s_data_thread
 	t_image				*img;
 	t_frac				*f;
 	pthread_mutex_t		frac_mutex;
+	int					start;
+	int					end;
 }					t_data_thread;
 
 typedef void *(*fn_draw_worker)(void *p);
@@ -171,10 +174,6 @@ void					init_burn(t_frac *f);
 void					redraw(int key, t_thread_info *ti);
 int						handler_julia(int b, int x, void *p);
 void					modify_julia(t_thread_info *ti, t_point *mp);
-void					*draw_worker_one(void *p);
-void					*draw_worker_two(void *p);
-void					*draw_worker_three(void *p);
-void					*draw_worker_four(void *p);
 void					put_color(t_frac *f, t_image *img);
 void					chose_frac(t_frac *f);
 void					choose_z(t_frac *f);

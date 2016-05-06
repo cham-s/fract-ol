@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 18:33:11 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/14 18:33:13 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 20:53:51 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define KeyRelease              3
 # define ButtonPress             4
 # define ButtonRelease           5
-# define MotionNotify            6
+# define MotNoty				6
 # define EnterNotify             7
 # define LeaveNotify             8
 # define FocusIn                 9
