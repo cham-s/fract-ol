@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/06 16:25:33 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/06 16:35:04 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 # define IMG_TO_WINDOW(m_ptr, w_ptr, i_ptr) mlx_put_image_to_window(m_ptr,\
 					w_ptr, i_ptr, 0, 0)
 
+/*
+** Colors 
+*/
+
 # define RED		0xFF0000
 # define GREEN		0x00FF00
 # define BLUE		0x0000FF
@@ -33,11 +37,17 @@
 # define GREY		0x585957
 # define SPEBLUE	0xD9853B
 
+
+/*
+** Window Size 
+*/
+
 # define WIDTH 900 
 # define HEIGHT 700 
 
-# define ORIGIN_X (WIDTH / 2)
-# define ORIGIN_Y (HEIGHT / 3)
+/*
+** Fractals 
+*/
 
 # define MAND	1	
 # define JULIA	2	
@@ -45,8 +55,16 @@
 # define BIRD	4	
 # define TRI	5	
 
+/*
+** Thread Macros 
+*/
+
 # define MAX_FRACTALS 5 
 # define NUM_THREADS 4
+
+/*
+** Maths defines
+*/
 
 # define SQRT(a) (a * a)
 # define CUB(a) (a * a * a)

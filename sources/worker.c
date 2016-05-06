@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   worker.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/06 17:01:09 by cattouma          #+#    #+#             */
+/*   Updated: 2016/05/06 17:02:02 by cattouma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void	*draw_worker_one(void *p)
@@ -124,7 +136,6 @@ void	launch_thread(pthread_t *t, fn_draw_worker worker, t_data_thread *dt)
 	ret = pthread_create(t, NULL, worker, (void *)dt);
 	if (ret)
 	{
-		//check validity
 		perror("error creating thread");
 		exit(EXIT_FAILURE);
 	}
@@ -137,8 +148,7 @@ void	wait_thread(pthread_t t)
 	ret = pthread_join(t, NULL);
 	if (ret)
 	{
-		//check validity
-		perror("error creating thread");
+		perror("error joining thread");
 		exit(EXIT_FAILURE);
 	}
 }

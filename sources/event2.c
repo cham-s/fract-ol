@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/06 17:00:52 by cattouma          #+#    #+#             */
+/*   Updated: 2016/05/06 17:00:55 by cattouma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 static void	redraw2(int keycode, t_thread_info *ti)
@@ -14,11 +26,12 @@ static void	redraw2(int keycode, t_thread_info *ti)
 		ti->show = (ti->show == 0 ? 1: 0);
 	if (keycode == KEY_SPACE)
 		ti->lock = (ti->lock == 0 ? 1: 0);
-	//printf("p1.x %lf p1.y %lf zoom %lf\n", ti->frac.p1.x, ti->frac.p1.y, ti->frac.zoom);
-	draw_set(ti->c->img, &ti->frac);
-	IMG_TO_WINDOW(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr);
-	if (ti->show)
-		menu(ti->c);
+	if (keycode == KEY_BACKSPACE)
+	{
+		choose_set(ti->frac.fract, ti);
+		draw_set(ti->c->img, &ti->frac);
+		IMG_TO_WINDOW(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr);
+	}
 }
 
 void		redraw(int keycode, t_thread_info *ti)
@@ -47,4 +60,8 @@ void		redraw(int keycode, t_thread_info *ti)
 		move_f(&ti->frac, 0, 10);
 	else
 		redraw2(keycode, ti);
+	draw_set(ti->c->img, &ti->frac);
+	IMG_TO_WINDOW(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr);
+	if (ti->show)
+		menu(ti->c);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/06 17:01:00 by cattouma          #+#    #+#             */
+/*   Updated: 2016/05/06 17:01:01 by cattouma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int		handler_key(int keycode, void *pa)
@@ -27,15 +39,15 @@ int		handler_mouse(int b,int x, int y, void *p)
 	{
 		mp.x = x;
 		mp.y = y;
-		if (b == WHEEL_DOWN)
+		if (b == WHEEL_DOWN || b == MOUSE_RIGHT)
 			zoomout(&ti->frac, &mp, 1.5);
-		if (b == WHEEL_UP)
+		if (b == WHEEL_UP || b == MOUSE_LEFT)
 			zoomin(&ti->frac, &mp, 1.5);
-	}
-	draw_set(ti->c->img, &ti->frac);
-	IMG_TO_WINDOW(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr);
+		draw_set(ti->c->img, &ti->frac);
+		IMG_TO_WINDOW(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr);
 	if (ti->show)
 		menu(ti->c);
+	}
 	return (0);
 }
 
