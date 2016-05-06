@@ -152,5 +152,8 @@ void					*draw_worker_four(void *p);
 void					put_color(t_frac *f, t_image *img);
 void					chose_frac(t_frac *f);
 void					choose_z(t_frac *f);
+void					zoomin(t_frac *f, t_point *mp, double factor);
+void					zoomout(t_frac *f, t_point *mp, double factor);
+void					move_f(t_frac *f, int x, int y);
 
 #endif
