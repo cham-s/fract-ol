@@ -49,12 +49,15 @@
 # define BURN	3
 # define BIRD	4
 # define TRI	5
+# define CELTIC	6
+# define PERP	7
+# define MANDPER	8
 
 /*
 ** Thread Macros
 */
 
-# define MAX_FRACTALS 5
+# define MAX_FRACTALS 8
 # define NUM_THREADS 6
 # define STEP (WIDTH / NUM_THREADS)
 
@@ -165,6 +168,8 @@ void					init_julia(t_frac *f);
 void					init_tri(t_frac *f);
 void					init_bird(t_frac *f);
 void					init_burn(t_frac *f);
+void					init_celtic(t_frac *f);
+void					init_perp(t_frac *f);
 void					redraw(int key, t_thread_info *ti);
 int						handler_julia(int b, int x, void *p);
 void					modify_julia(t_thread_info *ti, t_point *mp);

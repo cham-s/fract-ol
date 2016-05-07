@@ -22,6 +22,7 @@ static void	usage(void)
 	ft_putendl_fd("\t-b \t\tDraw burning ship set.", 2);
 	ft_putendl_fd("\t-bi \t\tDraw bird of prey set.", 2);
 	ft_putendl_fd("\t-t \t\tDraw tricorn set.", 2);
+	ft_putendl_fd("\t-c \t\tDraw celtic set.", 2);
 	exit(EXIT_FAILURE);
 }
 
@@ -38,6 +39,12 @@ void		choose_set(int frac, t_thread_info *ti)
 		init_tri(&ti->frac);
 	else if (frac == BIRD)
 		init_bird(&ti->frac);
+	else if (frac == CELTIC)
+		init_celtic(&ti->frac);
+	else if (frac == PERP)
+		init_perp(&ti->frac);
+	else if (frac == MANDPER)
+		init_perp(&ti->frac);
 }
 
 static int	fract_set(char *option)
@@ -52,6 +59,12 @@ static int	fract_set(char *option)
 		return (BIRD);
 	else if (!ft_strcmp("-t", option))
 		return (TRI);
+	else if (!ft_strcmp("-c", option))
+		return (CELTIC);
+	else if (!ft_strcmp("-p", option))
+		return (PERP);
+	else if (!ft_strcmp("-mp", option))
+		return (MANDPER);
 	else
 		return (0);
 }
@@ -70,7 +83,8 @@ void		check_args(int ac, char **av, long tab_set[MAX_FRACTALS], int *nf)
 	{
 		if (!ft_strcmp("-m", av[i]) || !ft_strcmp("-j", av[i])
 		|| !ft_strcmp("-b", av[i]) || !ft_strcmp("-bi", av[i])
-		|| !ft_strcmp("-t", av[i]))
+		|| !ft_strcmp("-t", av[i]) || !ft_strcmp("-c", av[i])
+		|| !ft_strcmp("-p", av[i]) || !ft_strcmp("-mp", av[i]))
 		{
 			tab_set[f++] = fract_set(av[i]);
 			*nf += 1;
