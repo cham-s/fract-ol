@@ -65,13 +65,13 @@ void		choose_z(t_frac *f)
 		f->z_i = ((f->tmp * f->tmp * 3) - (SQRT(f->z_i))) *
 			fabs(f->z_i) + f->c_i;
 	}
-	/* else if (f->fract == CELTIC) */
-	/* { */
-	/* 	f->z_r = fabs(((SQRT(f->z_r) * f->z_r) - 3 */ 
-	/* 				* (SQRT(f->z_i) * f->z_r))) - f->c_i; */
-	/* 	f->z_i = 3 * (f->tmp * f->tmp * f->z_i) - (SQRT(f->z_i) */ 
-	/* 			* f->z_i) - f->c_r; */
-	/* } */
+	else if (f->fract == CELTIC)
+	{
+		f->z_r = fabs(((SQRT(f->z_r) * f->z_r) - 3 
+					* (SQRT(f->z_i) * f->z_r))) - f->c_i;
+		f->z_i = 3 * (f->tmp * f->tmp * f->z_i) - (SQRT(f->z_i) 
+				* f->z_i) - f->c_r;
+	}
 	else if (f->fract == MANDPER)
 	{
 		f->z_r = (SQRT(f->z_r) - SQRT(f->z_i)) + f->c_r; 

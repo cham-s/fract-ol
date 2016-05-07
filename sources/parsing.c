@@ -15,7 +15,7 @@
 static void	usage(void)
 {
 	ft_putstr_fd("usage:\t", 2);
-	ft_putendl_fd("./fractol -[m | j | b | t | bi]", 2);
+	ft_putendl_fd("./fractol -[m | j | b | t | bi | c | p | mp]", 2);
 	ft_putendl_fd("help: Draw 4 fractals set at max.", 2);
 	ft_putendl_fd("\t-j \t\tDraw julia set.", 2);
 	ft_putendl_fd("\t-m \t\tDraw mandelbrot set.", 2);
@@ -23,6 +23,8 @@ static void	usage(void)
 	ft_putendl_fd("\t-bi \t\tDraw bird of prey set.", 2);
 	ft_putendl_fd("\t-t \t\tDraw tricorn set.", 2);
 	ft_putendl_fd("\t-c \t\tDraw celtic set.", 2);
+	ft_putendl_fd("\t-p \t\tDraw perp ship.", 2);
+	ft_putendl_fd("\t-mp \t\tDraw perp mand.", 2);
 	exit(EXIT_FAILURE);
 }
 
