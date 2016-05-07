@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:30:40 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/06 17:19:47 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/07 15:26:38 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 static void	usage(void)
 {
 	ft_putstr_fd("usage:\t", 2);
-	ft_putendl_fd("./fractol -[m | j | b | t | bi | c | p | mp]", 2);
-	ft_putendl_fd("help: Draw 4 fractals set at max.", 2);
+	ft_putendl_fd("./fractol -[m | j | b | t | bi | c | p | mp | all]", 2);
 	ft_putendl_fd("\t-j \t\tDraw julia set.", 2);
 	ft_putendl_fd("\t-m \t\tDraw mandelbrot set.", 2);
 	ft_putendl_fd("\t-b \t\tDraw burning ship set.", 2);
@@ -25,6 +24,7 @@ static void	usage(void)
 	ft_putendl_fd("\t-c \t\tDraw celtic set.", 2);
 	ft_putendl_fd("\t-p \t\tDraw perp ship.", 2);
 	ft_putendl_fd("\t-mp \t\tDraw perp mand.", 2);
+	ft_putendl_fd("\t-all \t\tOne flag to rule them all.", 2);
 	exit(EXIT_FAILURE);
 }
 
@@ -69,6 +69,20 @@ static int	fract_set(char *option)
 		return (MANDPER);
 	else
 		return (0);
+}
+
+void		show_them_all(long tab_set[MAX_FRACTALS], int *nf)
+{
+	int i;
+
+	*nf = 0;
+	i = 0;
+	while (i < MAX_FRACTALS)
+	{
+		tab_set[i] = i + 1;
+		i++;
+		*nf += 1;
+	}
 }
 
 void		check_args(int ac, char **av, long tab_set[MAX_FRACTALS], int *nf)

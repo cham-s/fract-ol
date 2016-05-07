@@ -7,7 +7,7 @@ LIBGRPH = -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit \
 INCLUDES = -I includes -I libft/includes -I minilibx_macos
 INC	= includes/fractol.h
 OBJS = main.o parsing.o draw.o init.o fractals.o handler.o init_fractals.o \
-	   worker.o event.o event2.o
+	   worker.o event.o event2.o init_fractals2.o
 .PHONY: all clean fclean re
 
 VPATH = sources/:minilibx_macos

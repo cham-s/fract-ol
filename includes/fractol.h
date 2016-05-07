@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 19:31:37 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/06 23:47:58 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/07 15:23:40 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,5 +179,6 @@ void					choose_z(t_frac *f);
 void					zoomin(t_frac *f, t_point *mp, double factor);
 void					zoomout(t_frac *f, t_point *mp, double factor);
 void					move_f(t_frac *f, int x, int y);
+void					show_them_all(long tab_set[MAX_FRACTALS], int *nf);
 
 #endif

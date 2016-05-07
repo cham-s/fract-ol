@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 17:24:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/06 23:24:31 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/07 15:25:13 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,13 @@ int			main(int ac, char **av)
 	pid_t	pid;
 	int		i;
 	long	tab_set[MAX_FRACTALS];
-	int		nbr_fractal;
+	int		nbr_frac;
 
 	i = 0;
 	ft_memset(tab_set, 0, MAX_FRACTALS);
-	check_args(ac, av, tab_set, &nbr_fractal);
-	while (i < nbr_fractal)
+	(ac == 2 && !ft_strcmp("-all", av[1]) ? show_them_all(tab_set, &nbr_frac) :
+	check_args(ac, av, tab_set, &nbr_frac));
+	while (i < nbr_frac)
 	{
 		pid = fork();
 		if (pid == -1)
