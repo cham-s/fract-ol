@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/06 17:01:00 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/06 19:50:25 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/07 16:55:04 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ int		handler_julia(int x, int y, void *p)
 
 void	modify_julia(t_thread_info *ti, t_point *mp)
 {
+	static int f = 0;
+
+	f = (f == 0? 1: f);
 	set_background(&ti->blk, ti->c->img);
 	IMG_TO_WINDOW(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr);
 	if (mp->x < WIDTH / 2 && mp->y < HEIGHT / 2)
@@ -82,6 +85,4 @@ void	modify_julia(t_thread_info *ti, t_point *mp)
 		ti->frac.c_r -= 0.01;
 	draw_set(ti->c->img, &ti->frac);
 	IMG_TO_WINDOW(ti->c->mlx_ptr, ti->c->win_ptr, ti->c->img_ptr);
-	if (ti->show)
-		menu(ti->c);
 }
